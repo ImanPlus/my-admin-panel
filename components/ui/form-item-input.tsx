@@ -8,7 +8,7 @@ interface Props extends FormItemProps {
 
 export default function FormItemInput({ inputProps, ...rest }: Props) {
   return (
-    <Form.Item labelCol={{className:"text-16-medium p-2"}} {...rest}>
+    <Form.Item labelCol={{className:"text-16-medium"}} {...rest}>
       <Input className="p-2!" {...inputProps} />
     </Form.Item>
   );

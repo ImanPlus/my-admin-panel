@@ -1,9 +1,516 @@
 @import "tailwindcss";
 
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+}
+
+@media screen and (max-width: 1579px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 779px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@font-face {
+  font-family: "InterBlack";
+  font-display: fallback;
+  src: url("/font/Inter-Black.woff2") format("woff2"),
+    url("/font/Inter-Black.woff") format("woff");
+}
+@font-face {
+  font-family: "InterBold";
+  font-display: fallback;
+  src: url("/font/Inter-Bold.woff2") format("woff2"),
+    url("/font/Inter-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "InterExtraBold";
+  font-display: fallback;
+  src: url("/font/Inter-ExtraBold.woff2") format("woff2"),
+    url("/font/Inter-ExtraBold.woff") format("woff");
+}
+@font-face {
+  font-family: "InterExtraLight";
+  font-display: fallback;
+  src: url("/font/Inter-ExtraLight.woff2") format("woff2"),
+    url("/font/Inter-ExtraLight.woff") format("woff");
+}
+@font-face {
+  font-family: "InterLight";
+  font-display: fallback;
+  src: url("/font/Inter-Light.woff2") format("woff2"),
+    url("/font/Inter-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "InterMedium";
+  font-display: fallback;
+  src: url("/font/Inter-Medium.woff2") format("woff2"),
+    url("/font/Inter-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "InterRegular";
+  font-display: fallback;
+  src: url("/font/Inter-Regular.woff2") format("woff2"),
+    url("/font/Inter-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "InterSemiBold";
+  font-display: fallback;
+  src: url("/font/Inter-SemiBold.woff2") format("woff2"),
+    url("/font/Inter-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "InterThin";
+  font-display: fallback;
+  src: url("/font/Inter-Thin.woff2") format("woff2"),
+    url("/font/Inter-Thin.woff") format("woff");
+}
+
+html {
+  font-size: 16px;
+  font-family: InterRegular !important;
+}
+
+@theme {
+  --color-info-50: oklch(0.9724 0.0137 247.97); /*#EFF7FF */
+  --color-info-100: oklch(0.9403 0.0292 252.94); /*#DEEDFF */
+  --color-info-200: oklch(0.8809 0.0625 244.9); /*#B6DDFF */
+  --color-info-300: oklch(0.7886 0.1156 244.23); /*#76C2FF */
+  --color-info-400: oklch(0.6984 0.167253 247.1337); /*#2DA4FF */
+  --color-info-500: oklch(0.6254 0.1894 252.52); /*#0288F5 */
+  --color-info-600: oklch(0.5352 0.18 255.6); /*#006AD2 */
+  --color-info-700: oklch(0.456 0.1545 255.8); /*#0054AA */
+  --color-info-800: oklch(0.4096 0.1318 254.34); /*#00498F */
+  --color-info-900: oklch(0.3577 0.1079 254.27); /*#073C73 */
+  --color-info-950: oklch(0.2705 0.0815 254.89); /*#04264D */
+
+  --color-primary-50: oklch(0.9717 0.0144 244.71); /*#EEF7FF */
+  --color-primary-100: oklch(0.9449 0.0294 240.18); /*#DCF0FF */
+  --color-primary-200: oklch(0.8888 0.0638 234.96); /*#B2E2FF */
+  --color-primary-300: oklch(0.8066 0.1155 234.16); /*#6DCCFF */
+  --color-primary-400: oklch(0.7278 0.1583 239.55); /*#20B2FF */
+  --color-primary-500: oklch(0.6668 0.18469 249.1573); /*#0098FF */
+  --color-primary-600: oklch(0.5752 0.1802 253.51); /*#0078DF */
+  --color-primary-700: #5C61E6; /*#5C61E6 */
+  --color-primary-800: #464ce3; /*#464ce3 */
+  --color-primary-900: oklch(0.3766 0.1117 251.7); /*#00427A */
+  --color-primary-950: oklch(0.3176 0.0981 253.05); /*#003262 */
+
+  --color-secondary-50: oklch(0.9849 0.0204 91.58); /*#FFFAEB */
+  --color-secondary-100: oklch(0.9554 0.0537 92.15); /*#FDF0C8 */
+  --color-secondary-200: oklch(0.9097 0.1083 91.05); /*#FCDF8B */
+  --color-secondary-300: oklch(0.8577 0.1464 86.59); /*#FAC94F */
+  --color-secondary-400: oklch(0.8244 0.1536 80.16); /*#F9B939 */
+  --color-secondary-500: oklch(0.7423 0.1654 63.96); /*#F2910E */
+  --color-secondary-600: oklch(0.644 0.1607 53.18); /*#D66C09 */
+  --color-secondary-700: oklch(0.5389 0.1503 44.61); /*#B24A0B */
+  --color-secondary-800: oklch(0.4595 0.1281 41.96); /*#903910 */
+  --color-secondary-900: oklch(0.4026 0.1093 41.27); /*#772F10 */
+  --color-secondary-950: oklch(0.2722 0.0755 41.74); /*#441704 */
+
+  --color-grayscale-50: oklch(0.9731 0 0); /*#F6F6F6 */
+  --color-grayscale-100: oklch(0.928 0 0); /*#E7E7E7 */
+  --color-grayscale-200: oklch(0.8421 0 0); /*#CBCBCB */
+  --color-grayscale-300: oklch(0.7572 0 0); /*#B0B0B0 */
+  --color-grayscale-400: oklch(0.5999 0 0); /*#808080 */
+  --color-grayscale-500: oklch(0.5348 0 0); /*#6D6D6D */
+  --color-grayscale-600: oklch(0.4784 0 0); /*#5D5D5D */
+  --color-grayscale-700: oklch(0.4276 0 0); /*#4F4F4F */
+  --color-grayscale-800: oklch(0.3904 0 0); /*#454545 */
+  --color-grayscale-900: oklch(0.36 0 0); /*#3D3D3D */
+  --color-grayscale-950: oklch(0.2686 0 0); /*#262626 */
+
+  --color-success-50: oklch(0.9794 0.0132 152.61); /*#F2FBF4 */
+  --color-success-100: oklch(0.9567 0.0347 153.25); /*#E0F8E6 */
+  --color-success-200: oklch(0.9123 0.0638 152.62); /*#C3EFCE */
+  --color-success-300: oklch(0.8463 0.1125 151.83); /*#93E2A8 */
+  --color-success-400: oklch(0.7575 0.1539 149.91); /*#5DCB7A */
+  --color-success-500: oklch(0.6449 0.159 148.59); /*#34A753 */
+  --color-success-600: oklch(0.58 0.1468 148.46); /*#289145 */
+  --color-success-700: oklch(0.4897 0.1182 148.7); /*#237238 */
+  --color-success-800: oklch(0.4208 0.0933 149.52); /*#205B30 */
+  --color-success-900: oklch(0.3706 0.0763 150.76); /*#1C4B2A */
+  --color-success-950: oklch(0.2512 0.0538 151.14); /*#0A2914 */
+
+  --color-warning-50: oklch(0.983 0.0154 86.42); /*#FEF9EE */
+  --color-warning-100: oklch(0.9608 0.0364 86.17); /*#FDF1D7 */
+  --color-warning-200: oklch(0.896 0.0802 81.3); /*#F8D8A0 */
+  --color-warning-300: oklch(0.8522 0.1065 77.93); /*#F5C67C */
+  --color-warning-400: oklch(0.7767 0.1394 68.32); /*#F0A447 */
+  --color-warning-500: oklch(0.7219 0.1592 59.63); /*#EC8923 */
+  --color-warning-600: oklch(0.6606 0.162 51.87); /*#DD7019 */
+  --color-warning-700: oklch(0.5635 0.1444 47.34); /*#B75517 */
+  --color-warning-800: oklch(0.4804 0.1182 45.65); /*#92441A */
+  --color-warning-900: oklch(0.4181 0.0967 46.46); /*#763918 */
+  --color-warning-950: oklch(0.2712 0.0619 43.23); /*#3F1B0B */
+
+  --color-error-50: oklch(0.9725 0.0119 23.7); /*#FEF3F2 */
+  --color-error-100: oklch(0.9408 0.0265 23.36); /*#FDE5E3 */
+  --color-error-200: oklch(0.8931 0.0525 23.99); /*#FDCFCB */
+  --color-error-300: oklch(0.8197 0.0915 24.2); /*#FAADA7 */
+  --color-error-400: oklch(0.7257 0.1476 26.29); /*#F57E74 */
+  --color-error-500: oklch(0.6241 0.2049 29.08); /*#E94335 */
+  --color-error-600: oklch(0.5838 0.1988 29.46); /*#D8382A */
+  --color-error-700: oklch(0.5102 0.1755 29.53); /*#B52C20 */
+  --color-error-800: oklch(0.4489 0.1484 29); /*#96271E */
+  --color-error-900: oklch(0.4024 0.1218 28.33); /*#7D261F */
+  --color-error-950: oklch(0.2614 0.082 28.38); /*#440F0B */
+
+  --color-base-white: oklch(0.997 0 0); /*#FEFEFE */
+  --color-base-black: oklch(0.1543 0 0); /*#0C0C0C */
+
+  --font-system-light: "InterLight";
+  --font-system-regular: "InterRegular";
+  --font-system-medium: "InterMedium";
+  --font-system-semiBold: "InterSemiBold";
+  --font-system-bold: "InterBold";
+}
+
+@utility display-72-light {
+  @apply !font-system-light !text-7xl !font-light;
+}
+
+@utility display-72-regular {
+  @apply !font-system-regular !text-7xl !font-[400];
+}
+
+@utility display-72-medium {
+  @apply !font-system-medium !text-7xl !font-medium;
+}
+
+@utility display-72-semiBold {
+  @apply !font-system-semiBold !text-7xl !font-[600];
+}
+
+@utility display-72-bold {
+  @apply !font-system-bold !text-7xl !font-bold;
+}
+
+@utility display-64-light {
+  @apply !font-system-light !text-[4rem] !font-light;
+}
+
+@utility display-64-regular {
+  @apply !font-system-regular !text-[4rem] !font-[400];
+}
+
+@utility display-64-medium {
+  @apply !font-system-medium !text-[4rem] !font-medium;
+}
+
+@utility display-64-semiBold {
+  @apply !font-system-semiBold !text-[4rem] !font-[600];
+}
+
+@utility display-64-bold {
+  @apply !font-system-bold !text-[4rem] !font-bold;
+}
+
+@utility display-60-light {
+  @apply !font-system-light !text-6xl !font-light;
+}
+
+@utility display-60-regular {
+  @apply !font-system-regular !text-6xl !font-[400];
+}
+
+@utility display-60-medium {
+  @apply !font-system-medium !text-6xl !font-medium;
+}
+
+@utility display-60-semiBold {
+  @apply !font-system-semiBold !text-6xl !font-[600];
+}
+
+@utility display-60-bold {
+  @apply !font-system-bold !text-6xl !font-bold;
+}
+
+@utility display-56-light {
+  @apply !font-system-light !text-[3.5rem] !font-light;
+}
+
+@utility display-56-regular {
+  @apply !font-system-regular !text-[3.5rem] !font-[400];
+}
+
+@utility display-56-medium {
+  @apply !font-system-medium !text-[3.5rem] !font-medium;
+}
+
+@utility display-56-semiBold {
+  @apply !font-system-semiBold !text-[3.5rem] !font-[600];
+}
+
+@utility display-56-bold {
+  @apply !font-system-bold !text-[3.5rem] !font-bold;
+}
+
+@utility display-48-light {
+  @apply !font-system-light !text-5xl !font-light;
+}
+
+@utility display-48-regular {
+  @apply !font-system-regular !text-5xl !font-[400];
+}
+
+@utility display-48-medium {
+  @apply !font-system-medium !text-5xl !font-medium;
+}
+
+@utility display-48-semiBold {
+  @apply !font-system-semiBold !text-5xl !font-[600];
+}
+
+@utility display-48-bold {
+  @apply !font-system-bold !text-5xl !font-bold;
+}
+
+@utility display-40-light {
+  @apply !font-system-light !text-[2.5rem] !font-light;
+}
+
+@utility display-40-regular {
+  @apply !font-system-regular !text-[2.5rem] !font-[400];
+}
+
+@utility display-40-medium {
+  @apply !font-system-medium !text-[2.5rem] !font-medium;
+}
+
+@utility display-40-semiBold {
+  @apply !font-system-semiBold !text-[2.5rem] !font-[600];
+}
+
+@utility display-40-bold {
+  @apply !font-system-bold !text-[2.5rem] !font-bold;
+}
+
+@utility display-36-light {
+  @apply !font-system-light !text-4xl !font-light;
+}
+
+@utility display-36-regular {
+  @apply !font-system-regular !text-4xl !font-[400];
+}
+
+@utility display-36-medium {
+  @apply !font-system-medium !text-4xl !font-medium;
+}
+
+@utility display-36-semiBold {
+  @apply !font-system-semiBold !text-4xl !font-[600];
+}
+
+@utility display-36-bold {
+  @apply !font-system-bold !text-4xl !font-bold;
+}
+
+@utility display-32-light {
+  @apply !font-system-light !text-[2rem]  !font-light;
+}
+
+@utility display-32-regular {
+  @apply !font-system-regular !text-[2rem] !font-[400];
+}
+
+@utility display-32-medium {
+  @apply !font-system-medium !text-[2rem] !font-medium;
+}
+
+@utility display-32-semiBold {
+  @apply !font-system-semiBold !text-[2rem] !font-[600];
+}
+
+@utility display-32-bold {
+  @apply !font-system-bold !text-[2rem] !font-bold;
+}
+
+@utility display-24-light {
+  @apply !font-system-light !text-2xl   !font-light;
+}
+
+@utility display-24-regular {
+  @apply !font-system-regular !text-2xl !font-[400];
+}
+
+@utility display-24-medium {
+  @apply !font-system-medium !text-2xl !font-medium;
+}
+
+@utility display-24-semiBold {
+  @apply !font-system-semiBold !text-2xl !font-[600];
+}
+
+@utility display-24-bold {
+  @apply !font-system-bold !text-2xl !font-bold;
+}
+
+@utility text-20-light {
+  @apply !font-system-light !text-xl !font-light;
+}
+
+@utility text-20-regular {
+  @apply !font-system-regular !text-xl !font-[400];
+}
+
+@utility text-20-medium {
+  @apply !font-system-medium !text-xl !font-medium;
+}
+
+@utility text-20-semiBold {
+  @apply !font-system-semiBold !text-xl !font-[600];
+}
+
+@utility text-20-bold {
+  @apply !font-system-bold !text-xl !font-bold;
+}
+
+@utility text-18-light {
+  @apply !font-system-light !text-lg !font-light;
+}
+
+@utility text-18-regular {
+  @apply !font-system-regular !text-lg !font-[400];
+}
+
+@utility text-18-medium {
+  @apply !font-system-medium !text-lg !font-medium;
+}
+
+@utility text-18-semiBold {
+  @apply !font-system-semiBold !text-lg !font-[600];
+}
+
+@utility text-18-bold {
+  @apply !font-system-bold !text-lg !font-bold;
+}
+
+@utility text-16-light {
+  @apply !font-system-light !text-base !font-light;
+}
+
+@utility text-16-regular {
+  @apply !font-system-regular !text-base !font-[400];
+}
+
+@utility text-16-medium {
+  @apply !font-system-medium !text-base !font-medium;
+}
+
+@utility text-16-semiBold {
+  @apply !font-system-semiBold !text-base !font-[600];
+}
+
+@utility text-16-bold {
+  @apply !font-system-bold !text-base !font-bold;
+}
+
+@utility text-14-light {
+  @apply !font-system-light !text-sm !font-light;
+}
+
+@utility text-14-regular {
+  @apply !font-system-regular !text-sm !font-[400];
+}
+
+@utility text-14-medium {
+  @apply !font-system-medium !text-sm !font-medium;
+}
+
+@utility text-14-semiBold {
+  @apply !font-system-semiBold !text-sm !font-[600];
+}
+
+@utility text-14-bold {
+  @apply !font-system-bold !text-sm !font-bold;
+}
+
+@utility text-12-light {
+  @apply !font-system-light !text-xs !font-light;
+}
+
+@utility text-12-regular {
+  @apply !font-system-regular !text-xs !font-[400];
+}
+
+@utility text-12-medium {
+  @apply !font-system-medium !text-xs !font-medium;
+}
+
+@utility text-12-semiBold {
+  @apply !font-system-semiBold !text-xs !font-[600];
+}
+
+@utility text-12-bold {
+  @apply !font-system-bold !text-xs !font-bold;
+}
+
+@utility text-10-light {
+  @apply !font-system-light !text-[0.925rem] !font-light;
+}
+
+@utility text-10-regular {
+  @apply !font-system-regular !text-[0.925rem] !font-[400];
+}
+
+@utility text-10-medium {
+  @apply !font-system-medium !text-[0.925rem] !font-medium;
+}
+
+@utility text-10-semiBold {
+  @apply !font-system-semiBold !text-[0.925rem] !font-[600];
+}
+
+@utility text-10-bold {
+  @apply !font-system-bold !text-[0.925rem] !font-bold;
+}
+
+@utility text-8-light {
+  @apply !font-system-light !text-[0.7rem] !font-light;
+}
+
+@utility text-8-regular {
+  @apply !font-system-regular !text-[0.7rem] !font-[400];
+}
+
+@utility text-8-medium {
+  @apply !font-system-medium !text-[0.7rem] !font-medium;
+}
+
+@utility text-8-semiBold {
+  @apply !font-system-semiBold !text-[0.7rem] !font-[600];
+}
+
+@utility text-8-bold {
+  @apply !font-system-bold !text-[0.7rem] !font-bold;
 }
