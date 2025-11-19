@@ -1,5 +1,6 @@
 import LogoIcon from "@/components/icons/logo-icon";
 import Image from "next/image";
+import '@ant-design/v5-patch-for-react-19';
 import React from "react";
 
 export default function Layout({

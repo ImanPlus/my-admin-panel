@@ -1,8 +1,6 @@
-import FormItemInput from "@/components/ui/form-item-input";
-import FormItemInputPassword from "@/components/ui/form-item-input-password";
-import { Button, Checkbox, Divider, Form } from "antd";
-import Link from "next/link";
+import { Divider } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
+import LoginForm from "@/components/login/content-form-login";
 
 export default function Login() {
   return (
@@ -13,20 +11,7 @@ export default function Login() {
       <p className="mb-5 text-grayscale-500">
         Please sign-in to your account and start the adventure
       </p>
-      <Form>
-        <FormItemInput name="email" inputProps={{ placeholder: "Email" }} />
-        <FormItemInputPassword
-          name="password"
-          inputProps={{ placeholder: "Password" }}
-        />
-        <div className="flex justify-between">
-          <Checkbox>Remember Me</Checkbox>
-          <Link href="/" className="text-primary-500! hover:text-primary-700!">
-            Forgot Password?
-          </Link>
-        </div>
-        <Button className="w-full my-4">Sign in</Button>
-      </Form>
+      <LoginForm />
       <Divider className="text-grayscale-500!">or</Divider>
 
       {/* Social Media */}
