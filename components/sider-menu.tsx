@@ -102,9 +102,9 @@ export default function SiderMenu() {
         className="absolute! -right-5! top-5! w-1! h-1! rounded-full! bg-grayscale-100!"
         icon={
           collapsed ? (
-            <DoubleRightOutlined className="text-primary-950!" />
+            <DoubleRightOutlined className="text-primary-950! border border-base-black rounded-full p-1" />
           ) : (
-            <DoubleLeftOutlined className="text-primary-950!" />
+            <DoubleLeftOutlined className="text-primary-950! border border-base-black rounded-full p-1" />
           )
         }
       />

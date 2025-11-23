@@ -114,7 +114,7 @@ html {
 
 @theme {
   --color-info-50: oklch(0.9724 0.0137 247.97); /*#EFF7FF */
-  --color-info-100: oklch(0.9403 0.0292 252.94); /*#DEEDFF */
+  --color-info-100: #DCDEFF; /*#DCDEFF */
   --color-info-200: oklch(0.8809 0.0625 244.9); /*#B6DDFF */
   --color-info-300: oklch(0.7886 0.1156 244.23); /*#76C2FF */
   --color-info-400: oklch(0.6984 0.167253 247.1337); /*#2DA4FF */
