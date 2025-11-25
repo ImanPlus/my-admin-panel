@@ -1,3 +1,4 @@
+import ContentFooter from "@/components/content-footer";
 import ContentHeader from "@/components/content-header";
 import SiderMenu from "@/components/sider-menu";
 import { Layout } from "antd";
@@ -10,7 +11,7 @@ export default async function layout() {
       <Layout className="w-full! px-10!">
         <ContentHeader />
         <Content className="h-[2000px] pt-14">Content mee</Content>
-        <Footer className="bg-amber-600!">Footer mee</Footer>
+        <ContentFooter />
       </Layout>
     </Layout>
   );
