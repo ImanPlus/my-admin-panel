@@ -1,7 +1,7 @@
 import { auth } from "./auth";
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
-export default auth((req) => {
+export default auth(async (req) => {
   const isLoggin = !!req.auth;
   const { pathname } = req.nextUrl;
 
@@ -12,7 +12,6 @@ export default auth((req) => {
   if (isLoggin && pathname.startsWith("/authentication")) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
-
 
   NextResponse.next();
 });

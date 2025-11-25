@@ -1,9 +1,9 @@
 import ContentHeader from "@/components/content-header";
 import SiderMenu from "@/components/sider-menu";
 import { Layout } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+import { Content, Footer } from "antd/es/layout/layout";
 
-export default function layout() {
+export default async function layout() {
   return (
     <Layout className="min-h-screen!">
       <SiderMenu />
