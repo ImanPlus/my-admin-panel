@@ -11,6 +11,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import LogoIcon from "./icons/logo-icon";
+import Link from "next/link";
 
 export default function SiderMenu() {
   const [collapsed, setCollapsed] = useState(false);
@@ -21,19 +22,23 @@ export default function SiderMenu() {
       label: "Dashboard",
       icon: <HomeOutlined />,
     },
-    
-    ...(!collapsed ? [{
-      key: "custom-divider",
-      type: "group" as const,
-      label: (
-        <Divider
-          orientation="left"
-          className="my-0! text-10-regular! text-grayscale-200!"
-        >
-          Apps & Pages
-        </Divider>
-      ),
-    }] : []),
+
+    ...(!collapsed
+      ? [
+          {
+            key: "custom-divider",
+            type: "group" as const,
+            label: (
+              <Divider
+                orientation="left"
+                className="my-0! text-10-regular! text-grayscale-200!"
+              >
+                Apps & Pages
+              </Divider>
+            ),
+          },
+        ]
+      : []),
     {
       key: "eCommerce",
       label: "eCommerce",
@@ -78,12 +83,14 @@ export default function SiderMenu() {
       icon: <UserOutlined />,
       children: [
         {
-          key: "listUsers",
+          key: "listUsers", 
           label: (
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-              List
-            </span>
+            <Link href="/dashboard/user/users">
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                List
+              </span>
+            </Link>
           ),
         },
       ],
@@ -108,7 +115,7 @@ export default function SiderMenu() {
           )
         }
       />
-      <div className="p-2 text-primary-700 flex items-center justify-center text-18-bold gap-1">
+      <div className="px-2 py-5 text-primary-700 flex items-center justify-center text-18-bold gap-1">
         <LogoIcon />
         <span
           className={`text-black text-20-medium ${collapsed ? "hidden" : ""}`}
