@@ -22,3 +22,15 @@ export async function handleLoginUser(username: string, password: string) {
 
   return res.json();
 }
+
+export async function handleGetAllUser() {
+  const res = await fetch(`${BASE_URL}/users`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}
