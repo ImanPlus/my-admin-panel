@@ -70,7 +70,7 @@ export default function ListOfUsers() {
         />
       </div>
 
-      <div className="bg-base-white rounded-2xl my-6">
+      <div className="bg-base-white rounded-2xl my-6 border-b border-grayscale-200">
         <div className="p-6 flex flex-col gap-3">
           <p className="text-16-semiBold">Filters</p>
           <div className="py-4 grid grid-cols-3 gap-4">
