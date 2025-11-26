@@ -5,9 +5,44 @@ import {
   UserAddOutlined,
   UserOutlined,
   UserDeleteOutlined,
+  DownOutlined,
+  UploadOutlined,
+  PrinterOutlined,
+  CopyOutlined,
+  FilePdfOutlined,
+  FileExcelOutlined,
 } from "@ant-design/icons";
+import { Button, Dropdown, Form, MenuProps, Space } from "antd";
+import Link from "next/link";
 
 export default function ListOfUsers() {
+  const items: MenuProps["items"] = [
+    {
+      key: "0",
+      label: <Link href={{ pathname: "#" }}>Print</Link>,
+      icon: <PrinterOutlined className="text-16-regular!" />,
+    },
+    {
+      key: "1",
+      label: <Link href={{ pathname: "#" }}>Csv</Link>,
+      icon: <PrinterOutlined className="text-16-regular!" />,
+    },
+    {
+      key: "2",
+      label: <Link href={{ pathname: "#" }}>Excel</Link>,
+      icon: <FileExcelOutlined className="text-16-regular!" />,
+    },
+    {
+      key: "3",
+      label: <Link href={{ pathname: "#" }}>Pdf</Link>,
+      icon: <FilePdfOutlined className="text-16-regular!" />,
+    },
+    {
+      key: "4",
+      label: <Link href={{ pathname: "#" }}>Copy</Link>,
+      icon: <CopyOutlined className="text-16-regular!" />,
+    },
+  ];
   const selectRoles = [
     {
       id: "1",
@@ -70,51 +105,65 @@ export default function ListOfUsers() {
         />
       </div>
 
-      <div className="bg-base-white rounded-2xl my-6 border-b border-grayscale-200">
-        <div className="p-6 flex flex-col gap-3">
+      <div className="bg-base-white rounded-2xl my-6 ">
+        <div className="px-5 pt-6 pb-0 flex flex-col gap-3 border-b border-grayscale-200">
           <p className="text-16-semiBold">Filters</p>
-          <div className="py-4 grid grid-cols-3 gap-4">
-            <FormItemInputSelect
-              name="role"
-              labelCol={{ className: "text-14-regular!" }}
-              inputProps={{
-                allowClear: true,
-                placeholder: "Select Role",
-                options: selectRoles.map((e) => ({
-                  label: e.role,
-                  value: e.id,
-                })),
-              }}
-            />
+          <Form>
+            <div className="py-4 grid grid-cols-3 gap-4">
+              <FormItemInputSelect
+                name="role"
+                labelCol={{ className: "text-14-regular! mb-0!" }}
+                inputProps={{
+                  allowClear: true,
+                  className: "mb-0!",
+                  placeholder: "Select Role",
+                  options: selectRoles.map((e) => ({
+                    label: e.role,
+                    value: e.id,
+                  })),
+                }}
+              />
 
-            <FormItemInputSelect
-              name="role"
-              labelCol={{ className: "text-14-regular!" }}
-              inputProps={{
-                className: "text-black!",
-                allowClear: true,
-                placeholder: "Select Plan",
-                options: selectRoles.map((e) => ({
-                  label: e.role,
-                  value: e.id,
-                })),
-              }}
-            />
+              <FormItemInputSelect
+                name="role"
+                labelCol={{ className: "text-14-regular!" }}
+                inputProps={{
+                  className: "text-black!",
+                  allowClear: true,
+                  placeholder: "Select Plan",
+                  options: selectRoles.map((e) => ({
+                    label: e.role,
+                    value: e.id,
+                  })),
+                }}
+              />
 
-            <FormItemInputSelect
-              name="role"
-              labelCol={{ className: "text-14-regular!" }}
-              inputProps={{
-                className: "text-black!",
-                allowClear: true,
-                placeholder: "Select Status",
-                options: selectRoles.map((e) => ({
-                  label: e.role,
-                  value: e.id,
-                })),
-              }}
-            />
-          </div>
+              <FormItemInputSelect
+                name="role"
+                labelCol={{ className: "text-14-regular!" }}
+                inputProps={{
+                  className: "text-black!",
+                  allowClear: true,
+                  placeholder: "Select Status",
+                  options: selectRoles.map((e) => ({
+                    label: e.role,
+                    value: e.id,
+                  })),
+                }}
+              />
+            </div>
+          </Form>
+        </div>
+
+        <div className="p-5">
+          <Dropdown menu={{ items, className: "border border-grayscale-200" }}>
+            <Button icon={<UploadOutlined />} className="text-grayscale-500! bg-base-white! border border-[#6D788D]!">
+              <Space>
+                Export
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
         </div>
       </div>
     </div>

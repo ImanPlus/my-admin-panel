@@ -43,7 +43,7 @@ export default function LoginForm() {
 
   return (
     <div>
-      <Form onFinish={handleSubmit}>
+      <Form onFinish={handleSubmit} className="flex flex-col gap-3">
         <FormItemInput name="username" inputProps={{ placeholder: "Email" }} />
         <FormItemInputPassword
           name="password"

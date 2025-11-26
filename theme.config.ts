@@ -17,13 +17,15 @@ export const lightMode: ThemeConfig = {
   components: {
     Button: {
       defaultBg: "#5C61E6",
-      colorText: "#fff",
+      colorText: "#fff ",
       defaultBorderColor: "#5C61E6",
       colorPrimaryHover: "#464ce3",
       defaultHoverBg: "#464ce3",
       defaultHoverColor:"#fff",
       contentFontSize: 15,
-      controlHeight:38
+      controlHeight:38,
+      defaultHoverBorderColor: "#6D788D",
+      
     },
     // Collapse: {
     //   fontSize: 17,
