@@ -2,12 +2,13 @@
 
 import FormItemInput from "@/components/ui/form-item-input";
 import FormItemInputSelect from "@/components/ui/form-item-input-select";
-import MetricCard from "@/components/ui/metric-card";
+
+import { handleGetAllUser } from "@/helper/api";
+import { promisePipe } from "@/helper/exception-handler";
 import {
-  UsergroupAddOutlined,
-  UserAddOutlined,
+ 
   UserOutlined,
-  UserDeleteOutlined,
+  
   DownOutlined,
   UploadOutlined,
   PrinterOutlined,
@@ -20,6 +21,7 @@ import {
   EyeOutlined,
 } from "@ant-design/icons";
 import {
+  App,
   Button,
   Dropdown,
   Form,
@@ -31,18 +33,20 @@ import {
   Tag,
 } from "antd";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ContentCardUser from "@/components/content-card-user";
 
 type TableRowSelection<T extends object = object> =
   TableProps<T>["rowSelection"];
 interface DataType {
-  key: React.Key;
   email: string;
-  user: string;
-  role: string;
-  plan: string;
-  status: string;
+  name: {
+    firstname: string;
+    lastname: string;
+  };
+  id: number;
 }
+[];
 
 const itemsTable: MenuProps["items"] = [
   {
@@ -55,18 +59,49 @@ const itemsTable: MenuProps["items"] = [
   },
 ];
 
-const columns: TableColumnsType<DataType> = [
+
+
+
+export default function ListOfUsers() {
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+  const [sending, setSending] = useState(false);
+  const [dataUser, setDataUser] = useState<
+    {
+      email: string;
+      name: {
+        firstname: string;
+        lastname: string;
+      };
+      id: number;
+    }[]
+  >();
+  const { notification } = App.useApp();
+  const rowSelection: TableRowSelection<DataType> = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  function randomNumber() {
+    return Math.floor(Math.random() * 5) + 1
+  }
+
+  const columns: TableColumnsType<DataType> = [
   {
+    key:"dsf",
     title: "USER",
     dataIndex: "user",
-    render: (value) => (
+    render: (value, record) => (
       <div className="flex items-center gap-2">
         <UserOutlined className="bg-gray-200 p-1.5 rounded-full" />
-        <span>{value}</span>
+        <span>{`${record.name.firstname} ${record.name.lastname}`}</span>
       </div>
     ),
   },
   {
+    key:"dsfdf",
     title: "EMAIL",
     dataIndex: "email",
     sorter: (a, b) => a.email.localeCompare(b.email),
@@ -74,37 +109,78 @@ const columns: TableColumnsType<DataType> = [
     className: "text-grayscale-500",
   },
   {
+    key:"dsfdasad",
     title: "ROLE",
     dataIndex: "role",
-    sorter: (a, b) => a.role.localeCompare(b.role),
-    defaultSortOrder: "descend",
-    render: (value) => (
-      <div className="flex items-center gap-2">
-        <EditOutlined />
-        <span>{value}</span>
-      </div>
-    ),
+    filters: [
+      { text: "Maintainer", value: "Maintainer" },
+      { text: "Subscriber", value: "Subscriber" },
+      { text: "Editor", value: "Editor" },
+      { text: "Author", value: "Author" },
+    ],
+    // onFilter: (value, record) => record.role === value,
+    render: () => {
+      const random = Math.floor(Math.random() * 5) + 1;
+      return (
+        <div className="flex items-center gap-2">
+          <EditOutlined />
+          <span>
+            {random === 1
+              ? "Maintainer"
+              : random === 2
+              ? "Subscriber"
+              : random === 3
+              ? "Editor"
+              : "Author"}
+          </span>
+        </div>
+      );
+    },
   },
   {
+    key:"dsfsde",
     title: "PLAN",
     dataIndex: "plan",
-    sorter: (a, b) => a.plan.localeCompare(b.plan),
-    defaultSortOrder: "descend",
+    filters: [
+      { text: "Enterprise", value: "Enterprise" },
+      { text: "Basic", value: "Basic" },
+      { text: "Team", value: "Team" },
+    ],
+    // onFilter: (value, record) => record.plan === value,
+    render: () => {
+      const random = Math.floor(Math.random() * 5) + 1;
+      return (
+        <div className="flex items-center gap-2">
+          <span>
+            {random === 1 ? "Enterprise" : random === 2 ? "Basic" : "Team"}
+          </span>
+        </div>
+      );
+    },
   },
   {
+    key:"dsrtretf",
     title: "STATUS",
     dataIndex: "status",
-    sorter: (a, b) => a.status.localeCompare(b.status),
-    defaultSortOrder: "descend",
-    render: (value) => (
+    filters: [
+      {text: "Active" , value: "Active"},
+      {text: "Inactive" , value: "Inactive"},
+      {text: "Pending" , value: "Pending"},
+    ],
+    // onFilter: (value,record) => record.status === value,
+    render: () => {
+
+      return(
       <div className="flex items-center gap-2">
-        <Tag bordered={false} color="success">
-          {value}
+        <Tag bordered={false} color={randomNumber() === 1 ? "success" :randomNumber() === 2 ? "blue" : "warning"}>
+          {randomNumber() === 1 ? "Active" : randomNumber() === 2 ? "Inactive" : "Pending"}
         </Tag>
       </div>
-    ),
+      )
+    },
   },
   {
+    key:"dsfdfrrrrt",
     title: "ACTIONS",
     dataIndex: "actions",
     render: () => (
@@ -131,29 +207,6 @@ const columns: TableColumnsType<DataType> = [
     ),
   },
 ];
-
-const dataSource = Array.from<DataType>({ length: 46 }).map<DataType>(
-  (_, i) => ({
-    key: i,
-    user: `Edward King ${i}`,
-    email: `iman${i}@gmail.com`,
-    role: `Subscriber${i}`,
-    plan: `Basic ${i}`,
-    status: "Active",
-  })
-);
-
-export default function ListOfUsers() {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-
-  const rowSelection: TableRowSelection<DataType> = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
 
   const items: MenuProps["items"] = [
     {
@@ -200,49 +253,37 @@ export default function ListOfUsers() {
       role: "Maintainer",
     },
   ];
+
+  const getUsers = async () => {
+    if (sending) return;
+    setSending(true);
+
+    promisePipe(
+      handleGetAllUser().then(async (res) => {
+        if (res.length) {
+          setDataUser(res);
+        } else {
+          notification.error({
+            message: res.message,
+          });
+        }
+      })
+    )
+      .catch((res: Error) => {
+        notification.error({ message: res.message });
+      })
+      .finally(() => setSending(false));
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getUsers();
+  }, []);
+
   return (
     <div>
-      <div className="grid grid-cols-4 gap-6">
-        <MetricCard
-          title="Session"
-          value="21,459"
-          percentage="+29%"
-          isPositive={true}
-          subtitle="Total Users"
-          icon={<UsergroupAddOutlined />}
-          iconBg="bg-green-200"
-        />
-
-        <MetricCard
-          title="Paid Users"
-          value="4,567"
-          percentage="+18%"
-          isPositive={true}
-          subtitle="Last week analytics"
-          icon={<UserAddOutlined />}
-          iconBg="bg-red-200"
-        />
-
-        <MetricCard
-          title="Active Users"
-          value="19,860"
-          percentage="-14%"
-          isPositive={false}
-          subtitle="Last week analytics"
-          icon={<UserOutlined />}
-          iconBg="bg-green-200"
-        />
-
-        <MetricCard
-          title="Pending Users"
-          value="237"
-          percentage="+42%"
-          isPositive={true}
-          subtitle="Last week analytics"
-          icon={<UserDeleteOutlined />}
-          iconBg="bg-yellow-200"
-        />
-      </div>
+      {/* Cards of users */}
+      <ContentCardUser />
 
       <div className="bg-base-white rounded-2xl my-6 ">
         <div className="px-5 pt-6 pb-0 flex flex-col gap-3 border-b border-grayscale-200">
@@ -264,7 +305,7 @@ export default function ListOfUsers() {
               />
 
               <FormItemInputSelect
-                name="role"
+                name="plan"
                 labelCol={{ className: "text-14-regular!" }}
                 inputProps={{
                   className: "text-black!",
@@ -278,7 +319,7 @@ export default function ListOfUsers() {
               />
 
               <FormItemInputSelect
-                name="role"
+                name="status"
                 labelCol={{ className: "text-14-regular!" }}
                 inputProps={{
                   className: "text-black!",
@@ -321,7 +362,7 @@ export default function ListOfUsers() {
           <Table<DataType>
             rowSelection={rowSelection}
             columns={columns}
-            dataSource={dataSource}
+            dataSource={dataUser}
             showSorterTooltip={{ target: "sorter-icon" }}
           />
         </div>

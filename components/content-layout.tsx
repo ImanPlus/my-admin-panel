@@ -1,5 +1,5 @@
 import { Content } from "antd/es/layout/layout";
-import MetricCard from "./ui/metric-card";
+import MetricCard from "./card/metric-card";
 
 export default function ContentLayout({
   children,

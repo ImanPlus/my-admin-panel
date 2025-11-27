@@ -9,7 +9,7 @@ import {
   SunOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Tooltip } from "antd";
+import { Badge, Tooltip } from "antd";
 import { useThemeStore } from "@/store/theme-store";
 import FormItemInput from "./ui/form-item-input";
 
@@ -40,10 +40,10 @@ export default function ContentHeader() {
         <FormItemInput
           className="m-0! text-5xl!"
           inputProps={{
-            size:"large",
+            size: "large",
             variant: "borderless",
             placeholder: "Search",
-            prefix: <SearchOutlined className="pr-2!"/>,
+            prefix: <SearchOutlined className="pr-2!" />,
           }}
         />
         <div className="flex gap-5 items-center flex-row-reverse">
@@ -61,8 +61,6 @@ export default function ContentHeader() {
               )}
             </div>
           </Tooltip>
-
-          <Button>dfvsdfsdf</Button>
         </div>
       </div>
     </Header>
