@@ -10,7 +10,13 @@ import {
 import FormItemInput from "@/components/ui/form-item-input";
 import Link from "next/link";
 
-export default function ContentExportSearchUser() {
+export default function ContentExportSearchUser({
+    searchValue,
+    setSearchValue
+}: {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const items: MenuProps["items"] = [
     {
       key: "0",
@@ -38,6 +44,11 @@ export default function ContentExportSearchUser() {
       icon: <CopyOutlined className="text-16-regular!" />,
     },
   ];
+
+  const handleSearch = (value:string) => {
+    setSearchValue(value);
+  };
+
   return (
     <div className="p-5 flex justify-between items-center">
       <Dropdown menu={{ items, className: "border border-grayscale-200" }}>
@@ -56,6 +67,8 @@ export default function ContentExportSearchUser() {
         <FormItemInput
           inputProps={{
             placeholder: "Search User",
+            value: searchValue,
+            onChange: (e) => handleSearch(e.target.value),
           }}
         />
         <Button>Add New User</Button>

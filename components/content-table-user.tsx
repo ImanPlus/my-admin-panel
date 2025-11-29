@@ -50,6 +50,7 @@ export default function ContentTableUser() {
     plan: "",
     status: "",
   });
+  const [searchValue, setSearchValue] = useState("");
 
   // Fetch API
   const getUsers = async () => {
@@ -248,27 +249,42 @@ export default function ContentTableUser() {
     },
   ];
 
+  const getFilteredData = () => {
+    return dataUser.filter((item) => {
+      // Filter of dropdown
+      const roleMatch = filter.role ? item.role === +filter.role : true;
+      const planMatch = filter.plan ? item.plan === +filter.plan : true;
+      const statusMatch = filter.status ? item.status === +filter.status : true;
+
+      // Search Value
+      const searchMatch = searchValue
+        ? Object.values(item).some(
+            (value) =>
+              value !== null &&
+              value !== undefined &&
+              String(value).toLowerCase().includes(searchValue.toLowerCase())
+          )
+        : true;
+
+      return roleMatch && planMatch && statusMatch && searchMatch;
+    });
+  };
+
   return (
     <div>
       {/* Filters */}
       <ContentFilterUser filter={filter} setFilter={setFilter} />
 
       {/* Export & Search User */}
-      <ContentExportSearchUser />
+      <ContentExportSearchUser
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
       <Table<DataType>
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={
-          filter.plan || filter.role || filter.status
-            ? dataUser.filter(
-                (e) =>
-                  e.plan === +filter.plan ||
-                  e.role === +filter.role ||
-                  e.status === +filter.status
-              )
-            : dataUser
-        }
+        dataSource={getFilteredData()}
         showSorterTooltip={{ target: "sorter-icon" }}
       />
     </div>
