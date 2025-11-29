@@ -29,6 +29,9 @@ interface DataType {
     lastname: string;
   };
   id: number;
+  role: number;
+  plan: number;
+  status: number;
 }
 
 type TableRowSelection<T extends object = object> =
@@ -39,16 +42,7 @@ export default function ContentTableUser() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [sending, setSending] = useState(false);
   const { notification } = App.useApp();
-  const [dataUser, setDataUser] = useState<
-    {
-      email: string;
-      name: {
-        firstname: string;
-        lastname: string;
-      };
-      id: number;
-    }[]
-  >();
+  const [dataUser, setDataUser] = useState<DataType[]>([]);
 
   // Fetch API
   const getUsers = async () => {
@@ -56,20 +50,25 @@ export default function ContentTableUser() {
     setSending(true);
 
     promisePipe(
-      handleGetAllUser().then(async (res) => {
-        if (res.length) {
-          setDataUser(res);
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
-      })
-    )
-      .catch((res: Error) => {
-        notification.error({ message: res.message });
-      })
-      .finally(() => setSending(false));
+      handleGetAllUser()
+        .then(async (res: DataType[]) => {
+          if (res.length) {
+            setDataUser(
+              res.map((e, i) => ({
+                email: e.email,
+                id: e.id,
+                name: e.name,
+                role: randomNumber(),
+                plan: randomNumber(),
+                status: randomNumber(),
+              }))
+            );
+          }
+        })
+        .catch((res: Error) => {
+          notification.error({ message: res.message });
+        })
+    ).finally(() => setSending(false));
   };
 
   useEffect(() => {
@@ -124,23 +123,22 @@ export default function ContentTableUser() {
       title: "ROLE",
       dataIndex: "role",
       filters: [
-        { text: "Maintainer", value: "Maintainer" },
-        { text: "Subscriber", value: "Subscriber" },
-        { text: "Editor", value: "Editor" },
-        { text: "Author", value: "Author" },
+        { text: "Maintainer", value: 1 },
+        { text: "Subscriber", value: 2 },
+        { text: "Editor", value: 3 },
+        { text: "Author", value: 4 },
       ],
-      // onFilter: (value, record) => record.role === value,
-      render: () => {
-        const random = Math.floor(Math.random() * 5) + 1;
+      onFilter: (value, record) => record.role === value,
+      render: (_, record) => {
         return (
           <div className="flex items-center gap-2">
             <EditOutlined />
             <span>
-              {random === 1
+              {record.role === 1
                 ? "Maintainer"
-                : random === 2
+                : record.role === 2
                 ? "Subscriber"
-                : random === 3
+                : record.role === 3
                 ? "Editor"
                 : "Author"}
             </span>
@@ -153,17 +151,20 @@ export default function ContentTableUser() {
       title: "PLAN",
       dataIndex: "plan",
       filters: [
-        { text: "Enterprise", value: "Enterprise" },
-        { text: "Basic", value: "Basic" },
-        { text: "Team", value: "Team" },
+        { text: "Enterprise", value: 1 },
+        { text: "Basic", value: 2 },
+        { text: "Team", value: 3 },
       ],
-      // onFilter: (value, record) => record.plan === value,
-      render: () => {
-        const random = Math.floor(Math.random() * 5) + 1;
+      onFilter: (value, record) => record.plan === value,
+      render: (_, record) => {
         return (
           <div className="flex items-center gap-2">
             <span>
-              {random === 1 ? "Enterprise" : random === 2 ? "Basic" : "Team"}
+              {record.plan === 1
+                ? "Enterprise"
+                : record.plan === 2
+                ? "Basic"
+                : "Team"}
             </span>
           </div>
         );
@@ -174,29 +175,32 @@ export default function ContentTableUser() {
       title: "STATUS",
       dataIndex: "status",
       filters: [
-        { text: "Active", value: "Active" },
-        { text: "Inactive", value: "Inactive" },
-        { text: "Pending", value: "Pending" },
+        { text: "Active", value: 1 },
+        { text: "Inactive", value: 2 },
+        { text: "Pending", value: 3 },
       ],
-      // onFilter: (value,record) => record.status === value,
-      render: () => {
+      onFilter: (value, record) => record.status === value,
+      render: (_, record) => {
         return (
           <div className="flex items-center gap-2">
             <Tag
               bordered={false}
               color={
-                randomNumber() === 1
+                record.status === 1
                   ? "success"
-                  : randomNumber() === 2
-                  ? "blue"
+                  : record.status === 2
+                  ? "default"
                   : "warning"
               }
+              className="rounded-full!"
             >
-              {randomNumber() === 1
-                ? "Active"
-                : randomNumber() === 2
-                ? "Inactive"
-                : "Pending"}
+              <span>
+                {record.status === 1
+                  ? "Active"
+                  : record.status === 2
+                  ? "Inactive"
+                  : "Pending"}
+              </span>
             </Tag>
           </div>
         );
