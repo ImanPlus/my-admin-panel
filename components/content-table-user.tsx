@@ -21,6 +21,8 @@ import Link from "next/link";
 import { randomNumber } from "@/helper/method";
 import { promisePipe } from "@/helper/exception-handler";
 import { handleGetAllUser } from "@/helper/api";
+import ContentExportSearchUser from "./content-export-search-user";
+import ContentFilterUser from "./content-filter-user";
 
 interface DataType {
   email: string;
@@ -43,6 +45,11 @@ export default function ContentTableUser() {
   const [sending, setSending] = useState(false);
   const { notification } = App.useApp();
   const [dataUser, setDataUser] = useState<DataType[]>([]);
+  const [filter, setFilter] = useState({
+    role: "",
+    plan: "",
+    status: "",
+  });
 
   // Fetch API
   const getUsers = async () => {
@@ -127,6 +134,7 @@ export default function ContentTableUser() {
         { text: "Subscriber", value: 2 },
         { text: "Editor", value: 3 },
         { text: "Author", value: 4 },
+        { text: "Admin", value: 5 },
       ],
       onFilter: (value, record) => record.role === value,
       render: (_, record) => {
@@ -140,7 +148,9 @@ export default function ContentTableUser() {
                 ? "Subscriber"
                 : record.role === 3
                 ? "Editor"
-                : "Author"}
+                : record.role === 4
+                ? "Author"
+                : "Admin"}
             </span>
           </div>
         );
@@ -154,6 +164,7 @@ export default function ContentTableUser() {
         { text: "Enterprise", value: 1 },
         { text: "Basic", value: 2 },
         { text: "Team", value: 3 },
+        { text: "Compony", value: 4 },
       ],
       onFilter: (value, record) => record.plan === value,
       render: (_, record) => {
@@ -164,7 +175,9 @@ export default function ContentTableUser() {
                 ? "Enterprise"
                 : record.plan === 2
                 ? "Basic"
-                : "Team"}
+                : record.plan === 3
+                ? "Team"
+                : "Compony"}
             </span>
           </div>
         );
@@ -237,10 +250,25 @@ export default function ContentTableUser() {
 
   return (
     <div>
+      {/* Filters */}
+      <ContentFilterUser filter={filter} setFilter={setFilter} />
+
+      {/* Export & Search User */}
+      <ContentExportSearchUser />
+
       <Table<DataType>
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={dataUser}
+        dataSource={
+          filter.plan || filter.role || filter.status
+            ? dataUser.filter(
+                (e) =>
+                  e.plan === +filter.plan ||
+                  e.role === +filter.role ||
+                  e.status === +filter.status
+              )
+            : dataUser
+        }
         showSorterTooltip={{ target: "sorter-icon" }}
       />
     </div>
