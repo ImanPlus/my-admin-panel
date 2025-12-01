@@ -21,12 +21,13 @@ export const lightMode: ThemeConfig = {
       defaultBorderColor: "#5C61E6",
       colorPrimaryHover: "#464ce3",
       defaultHoverBg: "#464ce3",
-      defaultHoverColor:"#fff",
+      defaultHoverColor: "#fff",
       contentFontSize: 15,
-      controlHeight:38,
+      controlHeight: 38,
       defaultHoverBorderColor: "#6D788D",
-      
     },
+   
+
     // Collapse: {
     //   fontSize: 17,
     //   headerPadding: "12px 16px",
@@ -57,9 +58,9 @@ export const darkMode: ThemeConfig = {
       defaultBorderColor: "#5C61E6",
       colorPrimaryHover: "#464ce3",
       defaultHoverBg: "#464ce3",
-      defaultHoverColor:"#fff",
+      defaultHoverColor: "#fff",
       contentFontSize: 15,
-      controlHeight:38
+      controlHeight: 38,
     },
     // Collapse: {
     //   fontSize: 17,

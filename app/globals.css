@@ -112,6 +112,10 @@ html {
   @apply text-12-regular!
 }
 
+.ant-pagination-item{
+  @apply border-none! bg-transparent!
+}
+
 @theme {
   --color-info-50: oklch(0.9724 0.0137 247.97); /*#EFF7FF */
   --color-info-100: #DCDEFF; /*#DCDEFF */

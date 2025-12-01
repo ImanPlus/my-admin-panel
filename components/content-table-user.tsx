@@ -23,6 +23,7 @@ import { promisePipe } from "@/helper/exception-handler";
 import { handleGetAllUser } from "@/helper/api";
 import ContentExportSearchUser from "./content-export-search-user";
 import ContentFilterUser from "./content-filter-user";
+import CustomPagination from "./custom-pagination";
 
 interface DataType {
   email: string;
@@ -51,6 +52,9 @@ export default function ContentTableUser() {
     status: "",
   });
   const [searchValue, setSearchValue] = useState("");
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
 
   // Fetch API
   const getUsers = async () => {
@@ -270,6 +274,11 @@ export default function ContentTableUser() {
     });
   };
 
+  const paginatedData = getFilteredData().slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
     <div>
       {/* Filters */}
@@ -284,8 +293,19 @@ export default function ContentTableUser() {
       <Table<DataType>
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={getFilteredData()}
+        dataSource={searchValue ? getFilteredData() : paginatedData}
         showSorterTooltip={{ target: "sorter-icon" }}
+        pagination={false}
+      />
+
+      <CustomPagination
+        total={getFilteredData().length}
+        pageSize={pageSize}
+        current={currentPage}
+        onChange={(page, newSize) => {
+          setCurrentPage(page);
+          if (newSize) setPageSize(newSize);
+        }}
       />
     </div>
   );
