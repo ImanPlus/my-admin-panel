@@ -38,7 +38,7 @@ export default function ContentExportSearchUser({
   const [sending, setSending] = useState(false);
   const { notification } = App.useApp();
   const router = useRouter();
-  const [form] = useForm();
+  const [form] = Form.useForm();
 
   // Modal
   const showModel = () => {
@@ -64,9 +64,9 @@ export default function ContentExportSearchUser({
         .then((res) => {
           if (res) {
             notification.success({ message: "User added successfully." });
-            router.refresh();
-            setIsModalOpen(false);
             form.resetFields();
+            setIsModalOpen(false);
+            router.refresh();
           }
         })
         .catch((res: Error) => {
@@ -146,6 +146,7 @@ export default function ContentExportSearchUser({
             onFinish={handleAddUser}
             id="addNewForm"
             className="border border-grayscale-100 p-5! flex flex-col gap-4"
+            form={form}
           >
             <FormItemInput
               name="username"
