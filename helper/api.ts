@@ -34,3 +34,23 @@ export async function handleGetAllUser() {
 
   return res.json();
 }
+
+export default async function handlePostNewUser(
+  username: string,
+  email: string,
+  password: string
+) {
+  const res = await fetch(`${BASE_URL}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+    body: JSON.stringify({ username, email, password }),
+  });
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}
