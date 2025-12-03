@@ -1,8 +1,8 @@
 "use client";
 
 import { App, Button, Checkbox, Form } from "antd";
-import FormItemInput from "../ui/form-item-input";
-import FormItemInputPassword from "../ui/form-item-input-password";
+import FormItemInput from "../ui/input/form-item-input";
+import FormItemInputPassword from "../ui/input/form-item-input-password";
 import Link from "next/link";
 import { useState } from "react";
 import { promisePipe } from "@/helper/exception-handler";

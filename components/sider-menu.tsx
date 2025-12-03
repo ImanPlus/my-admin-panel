@@ -19,7 +19,7 @@ export default function SiderMenu() {
   const items: MenuProps["items"] = [
     {
       key: "dashboard",
-      label: "Dashboard",
+      label: <Link href="/dashboard">Dashboard</Link>,
       icon: <HomeOutlined />,
     },
 

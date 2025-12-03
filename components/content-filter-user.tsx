@@ -1,5 +1,5 @@
 import { Form } from "antd";
-import FormItemInputSelect from "@/components/ui/form-item-input-select";
+import FormItemInputSelect from "@/components/ui/input/form-item-input-select";
 
 type FiltersType = {
   role: string;

@@ -3,7 +3,6 @@ import ContentHeader from "@/components/content-header";
 import ContentLayout from "@/components/content-layout";
 import SiderMenu from "@/components/sider-menu";
 import { Layout } from "antd";
-import { Content } from "antd/es/layout/layout";
 
 export default async function layout({
   children,

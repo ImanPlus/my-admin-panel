@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Badge, Tooltip } from "antd";
 import { useThemeStore } from "@/store/theme-store";
-import FormItemInput from "./ui/form-item-input";
+import FormItemInput from "./ui/input/form-item-input";
 
 export default function ContentHeader() {
   const [scrolled, setScrolled] = useState(false);
