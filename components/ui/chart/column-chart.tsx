@@ -10,7 +10,7 @@ type ChartDataItem = {
 export default function ColumnChart({ data }: { data: ChartDataItem[] }) {
   const options = {
     chart: { type: "bar" as const, height: 350 },
-    plotOptions: { bar: { columnWidth: "60%" } },
+    plotOptions: { bar: { columnWidth: "30%" } },
     colors: ["#00E396"],
     dataLabels: { enabled: false },
     legend: {
@@ -30,6 +30,6 @@ export default function ColumnChart({ data }: { data: ChartDataItem[] }) {
   ];
 
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={350} />
+    <ReactApexChart options={options} series={series} type="bar" height="100%" />
   );
 }

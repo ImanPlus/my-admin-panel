@@ -6,9 +6,9 @@ import { ClockCircleOutlined, ShoppingCartOutlined }  from "@ant-design/icons";
 export default function ContentDashboard() {
   const data = [
     { x: "2011", y: 1292, goals: [{ value: 1400 }] },
-    { x: "2012", y: 4432, goals: [{ value: 5400 }] },
-    { x: "2013", y: 3432, goals: [{ value: 2400 }] },
-    { x: "2014", y: 5432, goals: [{ value: 5700 }] },
+    { x: "2012", y: 4432, goals: [{ value: 4400 }] },
+    { x: "2013", y: 3432, goals: [{ value: 3400 }] },
+    { x: "2014", y: 4432, goals: [{ value: 4500 }] },
   ];
   return (
     <div className="grid grid-cols-6 gap-6">
