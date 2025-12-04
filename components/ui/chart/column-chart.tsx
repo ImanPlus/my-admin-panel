@@ -1,5 +1,10 @@
 "use client";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 type ChartDataItem = {
   x: string;
@@ -30,6 +35,11 @@ export default function ColumnChart({ data }: { data: ChartDataItem[] }) {
   ];
 
   return (
-    <ReactApexChart options={options} series={series} type="bar" height="100%" />
+    <ReactApexChart
+      options={options}
+      series={series}
+      type="bar"
+      height="100%"
+    />
   );
 }

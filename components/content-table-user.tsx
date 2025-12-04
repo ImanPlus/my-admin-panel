@@ -296,6 +296,7 @@ export default function ContentTableUser() {
         dataSource={searchValue ? getFilteredData() : paginatedData}
         showSorterTooltip={{ target: "sorter-icon" }}
         pagination={false}
+        rowKey="id"
       />
 
       <CustomPagination
