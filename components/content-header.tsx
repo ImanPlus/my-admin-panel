@@ -118,6 +118,7 @@ export default function ContentHeader() {
     },
     {
       key: "8",
+      className: "bg-transparent!",
       label: (
         <Button
           icon={<FullscreenExitOutlined />}
