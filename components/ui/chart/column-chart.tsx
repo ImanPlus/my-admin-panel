@@ -23,6 +23,23 @@ export default function ColumnChart({ data }: { data: ChartDataItem[] }) {
       showForSingleSeries: true,
       customLegendItems: ["Actual", "Expected"],
       markers: { fillColors: ["#00E396", "#775DD0"] },
+       labels: {
+        colors: "bg-base-white!",
+      },
+    },
+    xaxis: {
+      labels: {
+        style: {
+          colors: "bg-base-white!",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors:"bg-base-white!",
+        },
+      },
     },
   };
 

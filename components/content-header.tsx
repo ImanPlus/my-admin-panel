@@ -70,54 +70,70 @@ export default function ContentHeader() {
     {
       key: "2",
       label: (
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-3">
-            <UserOutlined className="text-lg" />
-            <p>My Profile</p>
-          </div>
-          <div className="flex gap-3">
-            <SettingOutlined className="text-lg" />
-            <p>Settings</p>
-          </div>
-          <div className="flex gap-3">
-            <FileTextOutlined className="text-lg" />
-            <p>Billing Plan</p>
-          </div>
+        <div className="flex gap-3">
+          <UserOutlined className="text-lg" />
+          <p>My Profile</p>
         </div>
       ),
     },
     {
       key: "3",
-      type: "divider",
+      label: (
+        <div className="flex gap-3">
+          <SettingOutlined className="text-lg" />
+          <p>Settings</p>
+        </div>
+      ),
     },
     {
       key: "4",
       label: (
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-3">
-            <DollarOutlined className="text-lg" />
-            <p>Pricing</p>
-          </div>
-          <div className="flex gap-3">
-            <QuestionCircleOutlined className="text-lg" />
-            <p>FAQ</p>
-          </div>
-          <Button
-            icon={<FullscreenExitOutlined />}
-            iconPosition="start"
-            className="bg-error-500! border-none!"
-            onClick={handlerSignOut}
-          >
-            Logout
-          </Button>
+        <div className="flex gap-3">
+          <FileTextOutlined className="text-lg" />
+          <p>Billing Plan</p>
         </div>
+      ),
+    },
+    {
+      key: "5",
+      type: "divider",
+    },
+    {
+      key: "6",
+      label: (
+        <div className="flex gap-3">
+          <DollarOutlined className="text-lg" />
+          <p>Pricing</p>
+        </div>
+      ),
+    },
+    {
+      key: "7",
+      label: (
+        <div className="flex gap-3">
+          <QuestionCircleOutlined className="text-lg" />
+          <p>FAQ</p>
+        </div>
+      ),
+    },
+    {
+      key: "8",
+      label: (
+        <Button
+          icon={<FullscreenExitOutlined />}
+          iconPosition="start"
+          className="bg-error-500! border-none! w-full!"
+          onClick={handlerSignOut}
+        >
+          Logout
+        </Button>
       ),
     },
   ];
 
   return (
     <Header
-      className={`px-2! sticky! top-0 w-full! transition-all duration-300 rounded-xl ${
+      className={`px-2! sticky! top-0 w-full!  transition-all duration-300 rounded-xl ${
         scrolled
           ? "shadow-md px-7! bg-base-white!"
           : "shadow-none bg-grayscale-50!"
@@ -150,7 +166,7 @@ export default function ContentHeader() {
           </Badge>
 
           <Tooltip title={theme === "light" ? "Dark Mode" : "Light Mode"}>
-            <div onClick={toggleTheme}>
+            <div onClick={toggleTheme} className="cursor-pointer">
               {theme === "light" ? (
                 <MoonOutlined className="text-xl" />
               ) : (

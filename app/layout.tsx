@@ -27,19 +27,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookie = cookies();
-  const theme = (await cookie).get("theme")?.value?? "light";
+  const theme = (await cookie).get("theme")?.value ?? "light";
 
+  console.log("theme", theme);
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-white text-base-black!`}>
         <ThemeProvider initialTheme={theme}>
           <App>
             <AntdRegistry>{children}</AntdRegistry>
           </App>
         </ThemeProvider>
       </body>
-    </html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    </html>
   );
 }

@@ -1,7 +1,10 @@
-import { type ThemeConfig } from "antd";
+import { theme, type ThemeConfig } from "antd";
 
 export const lightMode: ThemeConfig = {
+  algorithm: theme.defaultAlgorithm,
   token: {
+    colorBgBase:"#ffffff",
+    colorTextBase: "#000000",
     fontFamily: `
     'InterBlack', 
     'InterBold', 
@@ -10,7 +13,7 @@ export const lightMode: ThemeConfig = {
     'InterLight', 
     'InterMedium', 
     'InterRegular', 
-    'InterSemiBold', 
+    'InterSemiBold',  
     'InterThin',
   `,
   },
@@ -38,7 +41,10 @@ export const lightMode: ThemeConfig = {
 };
 
 export const darkMode: ThemeConfig = {
+  algorithm: theme.darkAlgorithm,
   token: {
+    colorBgBase:"#141414",
+    colorTextBase: "#ffffff", 
     fontFamily: `
     'InterBlack', 
     'InterBold', 
@@ -62,6 +68,15 @@ export const darkMode: ThemeConfig = {
       contentFontSize: 15,
       controlHeight: 38,
     },
+     Input: {
+      colorBgContainer: "#1a1a1a",
+      colorBorder: "#2a2a2a",
+    },
+    Select: {
+      colorBgContainer: "#1a1a1a",
+      colorBorder: "#2a2a2a",
+    },
+    
     // Collapse: {
     //   fontSize: 17,
     //   headerPadding: "12px 16px",

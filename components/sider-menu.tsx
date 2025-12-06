@@ -101,7 +101,7 @@ export default function SiderMenu() {
     <Sider
       collapsed={collapsed}
       width="12rem"
-      className="bg-gray-100! relative!"
+      className="bg-grayscale-50! relative!"
     >
       <Button
         onClick={() => setCollapsed(!collapsed)}
