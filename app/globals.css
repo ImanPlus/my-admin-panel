@@ -262,8 +262,8 @@ html {
   --color-secondary-900: oklch(0.4026 0.1093 41.27); /*#772F10 */
   --color-secondary-950: oklch(0.2722 0.0755 41.74); /*#441704 */
 
-  --color-grayscale-50: "#141414"
-  --color-grayscale-100: oklch(0.928 0 0); /*#E7E7E7 */
+  --color-grayscale-50: "#141414";
+  --color-grayscale-100: #5e5858;
   --color-grayscale-200: oklch(0.8421 0 0); /*#CBCBCB */
   --color-grayscale-300: oklch(0.7572 0 0); /*#B0B0B0 */
   --color-grayscale-400: oklch(0.5999 0 0); /*#808080 */

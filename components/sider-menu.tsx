@@ -83,7 +83,7 @@ export default function SiderMenu() {
       icon: <UserOutlined />,
       children: [
         {
-          key: "listUsers", 
+          key: "listUsers",
           label: (
             <Link href="/dashboard/user/users">
               <span className="flex items-center gap-2">
@@ -104,14 +104,15 @@ export default function SiderMenu() {
       className="bg-grayscale-50! relative!"
     >
       <Button
+        size="small"
         onClick={() => setCollapsed(!collapsed)}
         type="text"
-        className="absolute! -right-5! top-5! w-1! h-1! rounded-full! bg-grayscale-100!"
+        className="absolute! -right-5! top-5! rounded-full! bg-grayscale-100!"
         icon={
           collapsed ? (
-            <DoubleRightOutlined className="text-primary-950! border border-base-black rounded-full p-1" />
+            <DoubleRightOutlined className="text-primary-950! rounded-full " />
           ) : (
-            <DoubleLeftOutlined className="text-primary-950! border border-base-black rounded-full p-1" />
+            <DoubleLeftOutlined className="text-primary-950! rounded-full " />
           )
         }
       />
