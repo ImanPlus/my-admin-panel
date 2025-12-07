@@ -7,6 +7,7 @@ import {
   FileTextOutlined,
   FullscreenExitOutlined,
   HeartOutlined,
+  MenuOutlined,
   MoonOutlined,
   QuestionCircleOutlined,
   SearchOutlined,
@@ -14,7 +15,16 @@ import {
   SunOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { App, Badge, Button, Dropdown, MenuProps, Tooltip } from "antd";
+import {
+  App,
+  Badge,
+  Button,
+  Drawer,
+  DrawerProps,
+  Dropdown,
+  MenuProps,
+  Tooltip,
+} from "antd";
 import { useThemeStore } from "@/store/theme-store";
 import FormItemInput from "./ui/input/form-item-input";
 import { signOut } from "next-auth/react";
@@ -27,6 +37,12 @@ export default function ContentHeader() {
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const { notification } = App.useApp();
   const router = useRouter();
+  const [placement, setPlacement] = useState<DrawerProps["placement"]>("left");
+  const [open, setOpen] = useState(false);
+
+  const onClose = () => {
+    setOpen(!open);
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -134,13 +150,24 @@ export default function ContentHeader() {
 
   return (
     <Header
-      className={`px-2! sticky! top-0 w-full!  transition-all duration-300 rounded-xl ${
+      className={`px-0! md:px-2! sticky! z-100 top-0 w-full!  transition-all duration-300 rounded-xl ${
         scrolled
           ? "shadow-md px-7! bg-base-white!"
           : "shadow-none bg-grayscale-50!"
       }`}
     >
       <div className="flex justify-between items-center">
+        {/* Hamburger button */}
+        <Button
+          type="text"
+          className="text-base-black! md:hidden! p-0! h-auto! min-w-0! w-auto! flex items-center justify-center cursor-pointer"
+          size="small"
+          onClick={onClose}
+        >
+          <MenuOutlined />
+        </Button>
+
+        {/* Search Bar  */}
         <FormItemInput
           className="m-0! text-5xl!"
           inputProps={{
@@ -177,6 +204,17 @@ export default function ContentHeader() {
           </Tooltip>
         </div>
       </div>
+
+      <Drawer
+        open={open}
+        placement={placement}
+        onClose={onClose}
+        className="lg:hidden!"
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
     </Header>
   );
 }

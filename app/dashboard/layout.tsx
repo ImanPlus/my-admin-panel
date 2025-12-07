@@ -12,7 +12,7 @@ export default async function layout({
   return (
     <Layout className="min-h-screen!">
       <SiderMenu />
-      <Layout className="w-full! px-10!">
+      <Layout className="w-full! px-3 md:px-10!">
         <ContentHeader />
         <ContentLayout>{children}</ContentLayout>
         <ContentFooter />

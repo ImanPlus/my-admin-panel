@@ -35,7 +35,7 @@ export default function CustomPagination({
 
   return (
     <div
-      className="flex lg:justify-end justify-end items-center py-4 gap-11 "
+      className="flex lg:justify-end justify-end items-center py-4 gap-11 flex-col md:flex-row"
       
     >
       <div className="flex items-center gap-2">

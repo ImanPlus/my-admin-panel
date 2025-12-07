@@ -97,7 +97,7 @@ export default function ContentExportSearchUser({
   };
 
   return (
-    <div className="p-5 flex justify-between items-center">
+    <div className="p-2 md:p-5 flex md:justify-between items-start md:items-center flex-col md:flex-row gap-2.5 md:gap-0">
       <Dropdown menu={{ items, className: "border border-grayscale-200" }}>
         <Button
           icon={<UploadOutlined />}
@@ -110,7 +110,7 @@ export default function ContentExportSearchUser({
         </Button>
       </Dropdown>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-col md:flex-row">
         <FormItemInput
           inputProps={{
             placeholder: "Search User",

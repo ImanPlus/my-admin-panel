@@ -8,7 +8,7 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="flex h-screen">
-      <div className="p-9 absolute top-0 text-primary-700 left-0 z-50 flex items-center text-18-bold gap-1">
+      <div className="p-9 absolute top-0 text-primary-700 left-0 z-100 flex items-center text-18-bold gap-1">
         <LogoIcon />
         <span className="text-black text-20-medium">Materialize</span>
       </div>

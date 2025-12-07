@@ -101,7 +101,7 @@ export default function SiderMenu() {
     <Sider
       collapsed={collapsed}
       width="12rem"
-      className="bg-grayscale-50! relative!"
+      className="bg-grayscale-50! relative! hidden md:block"
     >
       <Button
         size="small"

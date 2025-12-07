@@ -290,16 +290,22 @@ export default function ContentTableUser() {
         setSearchValue={setSearchValue}
       />
 
-      <Table<DataType>
-        rowSelection={rowSelection}
-        columns={columns}
-        dataSource={searchValue ? getFilteredData() : paginatedData}
-        showSorterTooltip={{ target: "sorter-icon" }}
-        pagination={false}
-        rowKey="id"
-      />
+      <div className="grid! grid-cols-12! overflow-hidden!">
+        <div className="col-span-12!">
+          <Table<DataType>
+            rowSelection={rowSelection}
+            columns={columns}
+            dataSource={searchValue ? getFilteredData() : paginatedData}
+            showSorterTooltip={{ target: "sorter-icon" }}
+            pagination={false}
+            rowKey="id"
+            className="w-full!"
+            scroll={{ x: 800, y: 500 }}
+          />
+        </div>
+      </div>
 
-      <CustomPagination
+      <CustomPagination 
         total={getFilteredData().length}
         pageSize={pageSize}
         current={currentPage}
