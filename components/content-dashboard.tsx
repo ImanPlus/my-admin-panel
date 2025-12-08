@@ -12,11 +12,11 @@ export default function ContentDashboard() {
   ];
   return (
     <div className="grid grid-cols-6 gap-6">
-      <SimpleCard className="col-span-6">
+      <SimpleCard className="col-span-6 lg:col-span-2">
         <ColumnChart data={data} />
       </SimpleCard>
 
-      <SimpleCard className="col-span-3 ">
+      <SimpleCard className="col-span-3 lg:col-span-1">
         <ContentSummeryCard
           bgIcon="bg-green-300"
           title="155k"
@@ -27,7 +27,7 @@ export default function ContentDashboard() {
           icon={<ShoppingCartOutlined/>}
         />
       </SimpleCard>
-      <SimpleCard className="col-span-3 ">
+      <SimpleCard className="col-span-3 lg:col-span-1 ">
         <ContentSummeryCard
           bgIcon="bg-green-300"
           title="155k"
@@ -38,7 +38,7 @@ export default function ContentDashboard() {
           icon={<ShoppingCartOutlined/>}
         />
       </SimpleCard>
-      <SimpleCard className="col-span-3 ">
+      <SimpleCard className="col-span-3 lg:col-span-1 ">
         <ContentSummeryCard
           bgIcon="bg-yellow-300"
           title="155k"
@@ -49,7 +49,7 @@ export default function ContentDashboard() {
           icon={<ShoppingCartOutlined/>}
         />
       </SimpleCard>
-      <SimpleCard className="col-span-3 ">
+      <SimpleCard className="col-span-3 lg:col-span-1 ">
         <ContentSummeryCard
           bgIcon="bg-red-300"
           title="100k"

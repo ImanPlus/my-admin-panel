@@ -3,10 +3,12 @@
 import { Header } from "antd/es/layout/layout";
 import { useEffect, useState } from "react";
 import {
+  CloseOutlined,
   DollarOutlined,
   FileTextOutlined,
   FullscreenExitOutlined,
   HeartOutlined,
+  HomeOutlined,
   MenuOutlined,
   MoonOutlined,
   QuestionCircleOutlined,
@@ -19,9 +21,11 @@ import {
   App,
   Badge,
   Button,
+  Divider,
   Drawer,
   DrawerProps,
   Dropdown,
+  Menu,
   MenuProps,
   Tooltip,
 } from "antd";
@@ -29,6 +33,8 @@ import { useThemeStore } from "@/store/theme-store";
 import FormItemInput from "./ui/input/form-item-input";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import LogoIcon from "./icons/logo-icon";
+import Link from "next/link";
 
 export default function ContentHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,6 +45,7 @@ export default function ContentHeader() {
   const router = useRouter();
   const [placement, setPlacement] = useState<DrawerProps["placement"]>("left");
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   const onClose = () => {
     setOpen(!open);
@@ -148,6 +155,87 @@ export default function ContentHeader() {
     },
   ];
 
+  const items: MenuProps["items"] = [
+    {
+      key: "dashboard",
+      label: <Link href="/dashboard">Dashboard</Link>,
+      icon: <HomeOutlined />,
+    },
+
+    ...(!collapsed
+      ? [
+          {
+            key: "custom-divider",
+            type: "group" as const,
+            label: (
+              <Divider
+                orientation="left"
+                className="my-0! text-10-regular! text-grayscale-200!"
+              >
+                Apps & Pages
+              </Divider>
+            ),
+          },
+        ]
+      : []),
+    {
+      key: "eCommerce",
+      label: "eCommerce",
+      icon: <DollarOutlined />,
+      title: "eCommerce",
+      children: [
+        {
+          key: "Products",
+          label: (
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+              Products
+            </span>
+          ),
+          title: "Products",
+          children: [
+            {
+              key: "productList",
+              label: (
+                <span className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                  Product List
+                </span>
+              ),
+            },
+            {
+              key: "addList",
+              label: (
+                <span className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                  Add Product
+                </span>
+              ),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: "users",
+      label: "Users",
+      icon: <UserOutlined />,
+      children: [
+        {
+          key: "listUsers",
+          label: (
+            <Link href="/dashboard/user/users">
+              <span className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                List
+              </span>
+            </Link>
+          ),
+        },
+      ],
+    },
+  ];
+
   return (
     <Header
       className={`px-0! md:px-2! sticky! z-100 top-0 w-full!  transition-all duration-300 rounded-xl ${
@@ -210,10 +298,29 @@ export default function ContentHeader() {
         placement={placement}
         onClose={onClose}
         className="lg:hidden!"
+        closable={false}
+        width={300}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <div>
+          <div className="flex justify-between items-center">
+            <div className="flex items-center justify-start gap-1 text-primary-700">
+              <LogoIcon />
+              <span className="text-grayscale-400! text-20-medium">
+                Materialize
+              </span>
+            </div>
+            <CloseOutlined onClick={onClose} />
+          </div>
+          <Menu
+            mode="inline"
+            inlineCollapsed={collapsed}
+            defaultSelectedKeys={["dashboard"]}
+            items={items}
+            onClick={() => {
+              onClose();
+            }}
+          />
+        </div>
       </Drawer>
     </Header>
   );

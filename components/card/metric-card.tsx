@@ -18,7 +18,7 @@ export default function MetricCard({
   iconBg,
 }: MetricCardProps) {
   return (
-    <div className="p-5 flex justify-between bg-base-white rounded-2xl shadow-md w-full col-span-4 md:col-span-1">
+    <div className="p-5 flex justify-between bg-base-white rounded-2xl shadow-md w-full col-span-4 md:col-span-2 lg:col-span-1">
       <div className="flex flex-col gap-3">
         <h1 className="text-16-regular">{title}</h1>
 
