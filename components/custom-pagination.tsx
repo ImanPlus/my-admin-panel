@@ -54,7 +54,7 @@ export default function CustomPagination({
       <Pagination
         current={current}
         onChange={handlePageChange}
-        className="ltr !gap-0 !m-0 pr-5! !rounded-sm"
+        className="ltr gap-0! m-0! pr-5! rounded-sm!"
         total={total}
         pageSize={pageSize}
         showSizeChanger={false}

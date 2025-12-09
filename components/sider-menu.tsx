@@ -8,6 +8,7 @@ import {
   DoubleLeftOutlined,
   DoubleRightOutlined,
   HomeOutlined,
+  KubernetesOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import LogoIcon from "./icons/logo-icon";
@@ -94,6 +95,11 @@ export default function SiderMenu() {
           ),
         },
       ],
+    },
+    {
+      key: "wizard",
+      label: <Link href="/dashboard/wizards">Wizard Examples</Link>,
+      icon: <KubernetesOutlined />,
     },
   ];
 
