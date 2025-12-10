@@ -8,12 +8,13 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 export default function ContentWizards() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const next = () => setCurrentStep((prev) => prev + 1);
-  const prev = () => setCurrentStep((prev) => prev - 1);
+  const goToStep = (stepIndex: number) => {
+    setCurrentStep(stepIndex);
+  };
 
   return (
     <div className="bg-base-white shadow-md rounded-2xl">
-      <WizardSteps current={currentStep} next={next} prev={prev} />
+      <WizardSteps current={currentStep} onChange={goToStep} />
       <div className="grid grid-cols-12 gap-6 p-4">
         <div className="col-span-7 rounded-2xl p-4">
           <Alert
@@ -37,8 +38,11 @@ export default function ContentWizards() {
             closable
             showIcon
           />
-          <p>say something...</p>
-          <p>say something...</p>
+          <h1 className="text-20-semiBold py-2">My Shopping Bag (2 Items)</h1>
+          <div className="border border-gray-300 rounded-2xl p-3">
+            <p>say something...</p>
+            <p>say something...</p>
+          </div>
         </div>
         <div className="col-span-5 rounded-2xl p-4 bg-blue-500">
           <p>say something...</p>

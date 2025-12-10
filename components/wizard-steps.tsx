@@ -6,15 +6,42 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 
+type StepStatus = "process" | "finish" | "wait" | "error";
+
 export default function WizardSteps({
   current,
-  next,
-  prev,
+  onChange,
 }: {
   current: number;
-  next: () => void;
-  prev: () => void;
+  onChange: (stepIndex: number) => void;
 }) {
+  const stepData = [
+    { label: "Card", icon: <ShoppingCartOutlined /> },
+    { label: "Address", icon: <ProfileOutlined /> },
+    { label: "Payment", icon: <CreditCardOutlined /> },
+    { label: "Confirmation", icon: <ScheduleOutlined /> },
+  ];
+
+  const items = stepData.map((step, index) => {
+    const isActive = index === current;
+    const isCompleted = index < current;
+    const status: StepStatus = isActive
+      ? "process"
+      : isCompleted
+      ? "finish"
+      : "wait";
+
+    return {
+      status,
+      icon: (
+        <div className=" flex flex-col justify-center items-center">
+          {step.icon}
+          <span className="text-16-regular">{step.label}</span>
+        </div>
+      ),
+    };
+  });
+
   return (
     <div className="w-full flex justify-center items-center border-b border-grayscale-100">
       <div className="flex justify-center items-center py-5 w-1/2">
@@ -22,44 +49,8 @@ export default function WizardSteps({
           type="navigation"
           size="default"
           current={current}
-          items={[
-            {
-              status: "process",
-              icon: (
-                <div className=" flex flex-col justify-center items-center">
-                  <ShoppingCartOutlined className="text-4xl" />
-                  <span className="text-16-regular">Card</span>
-                </div>
-              ),
-            },
-            {
-              status: "wait",
-              icon: (
-                <div className=" flex flex-col justify-center items-center">
-                  <ProfileOutlined className="text-4xl" />
-                  <span className="text-16-regular ">Address</span>
-                </div>
-              ),
-            },
-            {
-              status: "wait",
-              icon: (
-                <div className=" flex flex-col justify-center items-center">
-                  <CreditCardOutlined className="text-4xl" />
-                  <span className="text-16-regular ">Payment</span>
-                </div>
-              ),
-            },
-            {
-              status: "wait",
-              icon: (
-                <div className=" flex flex-col justify-center items-center">
-                  <ScheduleOutlined className="text-4xl" />
-                  <span className="text-16-regular ">Confirmation</span>
-                </div>
-              ),
-            },
-          ]}
+          onChange={onChange}
+          items={items}
         />
       </div>
     </div>
