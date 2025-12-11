@@ -2,6 +2,7 @@ import { theme, type ThemeConfig } from "antd";
 
 export const lightMode: ThemeConfig = {
   algorithm: theme.defaultAlgorithm,
+  cssVar:true,
   token: {
     colorBgBase:"#ffffff",
     colorTextBase: "#000000",
@@ -42,6 +43,7 @@ export const lightMode: ThemeConfig = {
 
 export const darkMode: ThemeConfig = {
   algorithm: theme.darkAlgorithm,
+  cssVar:true,
   token: {
     colorBgBase:"#141414",
     colorTextBase: "#ffffff", 
