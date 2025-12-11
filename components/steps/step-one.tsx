@@ -3,8 +3,8 @@ import { Alert } from "antd";
 
 export default function StepOne() {
   return (
-    <div className="grid grid-cols-12 gap-6 p-4">
-      <div className="col-span-7 rounded-2xl p-4">
+    <div className="grid grid-cols-12 gap-6 p-2 lg:p-3.5 my-2">
+      <div className="col-span-12 lg:col-span-7 rounded-2xl p-2 lg:p-1.5">
         <Alert
           message={
             <div>
@@ -30,7 +30,7 @@ export default function StepOne() {
           <p>say something...</p>
         </div>
       </div>
-      <div className="col-span-5 rounded-2xl p-4 bg-blue-500">
+      <div className="col-span-12 lg:col-span-5 rounded-2xl p-4 bg-blue-500 mx-2 lg:mx-0">
         <p>say something...</p>
         <p>say something...</p>
       </div>
