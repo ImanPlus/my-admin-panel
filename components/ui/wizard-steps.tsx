@@ -1,27 +1,16 @@
 import { Steps } from "antd";
-import {
-  CreditCardOutlined,
-  ProfileOutlined,
-  ScheduleOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
 
 type StepStatus = "process" | "finish" | "wait" | "error";
 
 export default function WizardSteps({
   current,
   onChange,
+  stepData,
 }: {
   current: number;
   onChange: (stepIndex: number) => void;
+  stepData: { label: string; icon: React.ReactNode }[];
 }) {
-  const stepData = [
-    { label: "Card", icon: <ShoppingCartOutlined /> },
-    { label: "Address", icon: <ProfileOutlined /> },
-    { label: "Payment", icon: <CreditCardOutlined /> },
-    { label: "Confirmation", icon: <ScheduleOutlined /> },
-  ];
-
   const items = stepData.map((step, index) => {
     const isActive = index === current;
     const isCompleted = index < current;

@@ -35,11 +35,13 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import LogoIcon from "./icons/logo-icon";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function ContentHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   const theme = useThemeStore((state) => state.theme);
+  const [themeClient, setThemeClient] = useState(Cookies.get("theme"));
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const { notification } = App.useApp();
   const router = useRouter();
@@ -281,14 +283,16 @@ export default function ContentHeader() {
             <HeartOutlined className="text-xl cursor-pointer!" />
           </Badge>
 
-          <Tooltip title={theme === "light" ? "Dark Mode" : "Light Mode"}>
-            <div onClick={toggleTheme} className="cursor-pointer">
-              {theme === "light" ? (
+          <Tooltip title={themeClient === "light" ? "Dark Mode" : "Light Mode"}>
+            {themeClient === "light" ? (
+              <button onClick={toggleTheme} className="cursor-pointer">
                 <MoonOutlined className="text-xl" />
-              ) : (
+              </button>
+            ) : (
+              <button onClick={toggleTheme} className="cursor-pointer">
                 <SunOutlined className="text-xl" />
-              )}
-            </div>
+              </button>
+            )}
           </Tooltip>
         </div>
       </div>

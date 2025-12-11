@@ -1,9 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import WizardSteps from "./wizard-steps";
-import { Alert } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import WizardSteps from "./ui/wizard-steps";
+import {
+  CreditCardOutlined,
+  ProfileOutlined,
+  ScheduleOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
+import StepOne from "./steps/step-one";
+import StepTwo from "./steps/step-two";
+import StepThree from "./steps/step-three";
+import StepFour from "./steps/step-four";
 
 export default function ContentWizards() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -12,43 +20,25 @@ export default function ContentWizards() {
     setCurrentStep(stepIndex);
   };
 
+  const stepData = [
+    { label: "Card", icon: <ShoppingCartOutlined /> },
+    { label: "Address", icon: <ProfileOutlined /> },
+    { label: "Payment", icon: <CreditCardOutlined /> },
+    { label: "Confirmation", icon: <ScheduleOutlined /> },
+  ];
+
   return (
     <div className="bg-base-white shadow-md rounded-2xl">
-      <WizardSteps current={currentStep} onChange={goToStep} />
-      <div className="grid grid-cols-12 gap-6 p-4">
-        <div className="col-span-7 rounded-2xl p-4">
-          <Alert
-            message={
-              <div>
-                <h1 className="text-18-bold text-green-500">
-                  Available Offers
-                </h1>
-                <p className="text-green-500">
-                  - 10% Instant Discount on Bank of America Corp Bank Debit and
-                  Credit cards
-                </p>
-                <p className="text-green-500">
-                  - 25% Cashback Voucher of up to $60 on first ever PayPal
-                  transaction. TCA
-                </p>
-              </div>
-            }
-            icon={<InfoCircleOutlined />}
-            type="success"
-            closable
-            showIcon
-          />
-          <h1 className="text-20-semiBold py-2">My Shopping Bag (2 Items)</h1>
-          <div className="border border-gray-300 rounded-2xl p-3">
-            <p>say something...</p>
-            <p>say something...</p>
-          </div>
-        </div>
-        <div className="col-span-5 rounded-2xl p-4 bg-blue-500">
-          <p>say something...</p>
-          <p>say something...</p>
-        </div>
-      </div>
+      <WizardSteps
+        current={currentStep}
+        onChange={goToStep}
+        stepData={stepData}
+      />
+
+      {currentStep === 0 && <StepOne />}
+      {currentStep === 1 && <StepTwo />}
+      {currentStep === 2 && <StepThree />}
+      {currentStep === 3 && <StepFour />}
     </div>
   );
 }
