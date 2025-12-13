@@ -14,11 +14,11 @@
     "antd": "^5.26.2",
     "apexcharts": "^5.3.6",
     "js-cookie": "^3.0.5",
-    "next": "16.0.3",
+    "next": "^16.0.10",
     "next-auth": "^5.0.0-beta.30",
-    "react": "^19.0.0",
+    "react": "^19.2.3",
     "react-apexcharts": "^1.9.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.2.3",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
