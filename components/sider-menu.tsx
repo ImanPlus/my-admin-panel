@@ -59,19 +59,23 @@ export default function SiderMenu() {
             {
               key: "productList",
               label: (
-                <span className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                  Product List
-                </span>
+                <Link href="/dashboard/products/list-product">
+                  <span className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                    Product List
+                  </span>
+                </Link>
               ),
             },
             {
               key: "addList",
               label: (
-                <span className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                  Add Product
-                </span>
+                <Link href="/dashboard/products/add-product">
+                  <span className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                    Add Product
+                  </span>
+                </Link>
               ),
             },
           ],

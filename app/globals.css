@@ -116,6 +116,10 @@ html {
   @apply border-none! bg-transparent!
 }
 
+.ant-form-item {
+  @apply w-full!
+}
+
 .dark .apexcharts-menu {
   background: #1f1f1f !important;
 }
