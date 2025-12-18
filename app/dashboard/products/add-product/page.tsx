@@ -3,11 +3,10 @@ import { handleGetAllProduct } from "@/helper/api";
 
 export default async function AddProduct() {
   const productList = await handleGetAllProduct();
-
-  console.log("productList", productList);
+  
   return (
     <div>
-      <ContentAddProduct productList={productList?? []} />
+      <ContentAddProduct productList={productList.data?? []} />
     </div>
   );
 }

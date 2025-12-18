@@ -67,3 +67,20 @@ export async function handleGetAllProduct() {
 
   return res.json();
 }
+
+export async function handlePostAddProduct(formData:any){
+  const res = await fetch(`${BASE_URL}/products`,{
+    method:"POST",
+    headers:{
+      "Content-Type":"multipart/form-data"
+    },
+    cache: "no-store",
+    body:formData
+  });
+
+  if(!res.ok){
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}

@@ -120,6 +120,11 @@ html {
   @apply w-full!
 }
 
+/* .ql-toolbar.ql-snow {
+  @apply bg-base-white!;
+} */
+
+
 .dark .apexcharts-menu {
   background: #1f1f1f !important;
 }
