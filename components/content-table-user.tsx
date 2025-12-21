@@ -8,6 +8,8 @@ import {
   TableColumnsType,
   Tag,
   App,
+  Modal,
+  Form,
 } from "antd";
 import { useEffect, useState } from "react";
 import {
@@ -24,6 +26,9 @@ import { handleGetAllUser } from "@/helper/api";
 import ContentExportSearchUser from "./content-export-search-user";
 import ContentFilterUser from "./content-filter-user";
 import CustomPagination from "./custom-pagination";
+import FormItemInput from "./ui/input/form-item-input";
+import FormItemInputPassword from "./ui/input/form-item-input-password";
+import ButtonOutline from "./ui/button/button-outline";
 
 interface DataType {
   email: string;
@@ -35,6 +40,7 @@ interface DataType {
   role: number;
   plan: number;
   status: number;
+  password: string;
 }
 
 type TableRowSelection<T extends object = object> =
@@ -52,6 +58,24 @@ export default function ContentTableUser() {
     status: "",
   });
   const [searchValue, setSearchValue] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
+  const [copyData, setCopyData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  // Modal
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    form.resetFields();
+    setIsModalOpen(false);
+  };
+
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
@@ -73,6 +97,7 @@ export default function ContentTableUser() {
                 role: randomNumber(),
                 plan: randomNumber(),
                 status: randomNumber(),
+                password: "1111",
               }))
             );
           }
@@ -88,6 +113,8 @@ export default function ContentTableUser() {
     getUsers();
   }, []);
 
+  console.log("kit to beyt", copyData);
+
   // Select Row
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -97,18 +124,6 @@ export default function ContentTableUser() {
     selectedRowKeys,
     onChange: onSelectChange,
   };
-
-  // Data of Table
-  const itemsTable: MenuProps["items"] = [
-    {
-      key: "0",
-      label: <Link href={{ pathname: "#" }}>Edit</Link>,
-    },
-    {
-      key: "1",
-      label: <Link href={{ pathname: "#" }}>Suspend</Link>,
-    },
-  ];
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -228,7 +243,7 @@ export default function ContentTableUser() {
       key: "actions",
       title: "ACTIONS",
       dataIndex: "actions",
-      render: () => (
+      render: (_, record) => (
         <div className="flex items-center gap-2">
           <Button type="text">
             <DeleteOutlined className="text-20-regular text-grayscale-400!" />
@@ -240,7 +255,36 @@ export default function ContentTableUser() {
 
           <Dropdown
             menu={{
-              items: itemsTable,
+              items: [
+                {
+                  key: "0",
+                  label: (
+                    <Button type="link" className="p-0! text-base-black!">
+                      Edit
+                    </Button>
+                  ),
+                  onClick: () => {
+                    showModal();
+                    const data = dataUser.find((e) => e.id === record.id);
+                    console.log("data", data);
+                    setCopyData({
+                      username: data?.name.firstname ?? "",
+                      email: data?.email ?? "",
+                      password: data?.password ?? "",
+                    });
+
+                    form.setFieldsValue({
+                      user: record.name.firstname + " " + record.name.lastname,
+                      email: record.email,
+                      password: record.password,
+                    });
+                  },
+                },
+                {
+                  key: "1",
+                  label: <Link href={{ pathname: "#" }}>Suspend</Link>,
+                },
+              ],
               className: "border border-grayscale-200 w-40!",
             }}
           >
@@ -305,7 +349,7 @@ export default function ContentTableUser() {
         </div>
       </div>
 
-      <CustomPagination 
+      <CustomPagination
         total={getFilteredData().length}
         pageSize={pageSize}
         current={currentPage}
@@ -314,6 +358,72 @@ export default function ContentTableUser() {
           if (newSize) setPageSize(newSize);
         }}
       />
+
+      <Modal
+        open={isModalOpen}
+        closeIcon={false}
+        closable={false}
+        classNames={{ footer: "hidden!", body: "h-fit!" }}
+      >
+        <div>
+          <h1 className="text-18-semiBold text-center">
+            Edit User Information
+          </h1>
+          <p className="text-grayscale-400 text-center">
+            Updating user details will receive a privacy audit.
+          </p>
+          <Form form={form}>
+            <div className="grid grid-cols-2 gap-4 py-3">
+              <FormItemInput
+                name="user"
+                className="col-span-1!"
+                inputProps={{
+                  placeholder: "User",
+                  className: "p-3! text-14-regular!",
+                  // value: copyData.username,
+                  // onChange: (e) =>
+                  //   setCopyData({ ...copyData, username: e.target.value }),
+                }}
+              />
+
+              <FormItemInput
+                name="email"
+                className="col-span-1!"
+                inputProps={{
+                  placeholder: "Email",
+                  className: "p-3! text-14-regular!",
+                }}
+              />
+
+              <FormItemInputPassword
+                name="password"
+                className="col-span-2!"
+                inputProps={{
+                  placeholder: "Password",
+                  className: "p-3! text-14-regular!",
+                  type: "password",
+                  autoComplete: "false",
+                }}
+                rules={[
+                  { required: true, message: "Password is required." },
+                  {
+                    pattern:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
+                    message:
+                      "The password must be at least 8 characters long and include uppercase and lowercase letters, numbers, and symbols.",
+                  },
+                ]}
+              />
+              <div className="flex justify-end col-span-2 gap-4">
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+                <ButtonOutline onClick={handleCancel}>Cancel</ButtonOutline>
+              </div>
+            </div>
+          </Form>
+        </div>
+      </Modal>
     </div>
   );
 }

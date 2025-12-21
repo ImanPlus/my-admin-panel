@@ -55,6 +55,25 @@ export default async function handlePostNewUser(
   return res.json();
 }
 
+export async function handlePutUpdateUser(
+  username: string,
+  email: string,
+  password: string
+) {
+  const res = await fetch(`${BASE_URL}/users/{id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+    body: JSON.stringify({ username, email, password }),
+  });
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}
+
 // ---------------------- Product
 export async function handleGetAllProduct() {
   const res = await fetch(`${BASE_URL}/products`, {
@@ -68,17 +87,17 @@ export async function handleGetAllProduct() {
   return res.json();
 }
 
-export async function handlePostAddProduct(formData:any){
-  const res = await fetch(`${BASE_URL}/products`,{
-    method:"POST",
-    headers:{
-      "Content-Type":"multipart/form-data"
+export async function handlePostAddProduct(formData: any) {
+  const res = await fetch(`${BASE_URL}/products`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
     },
     cache: "no-store",
-    body:formData
+    body: formData,
   });
 
-  if(!res.ok){
+  if (!res.ok) {
     throw new Error(res.statusText);
   }
 

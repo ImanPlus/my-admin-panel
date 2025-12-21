@@ -35,8 +35,8 @@ export default function ContentExportSearchUser({
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
     form.resetFields();
+    setIsModalOpen(false);
   };
 
   // Fetch API
