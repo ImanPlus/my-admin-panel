@@ -56,11 +56,12 @@ export default async function handlePostNewUser(
 }
 
 export async function handlePutUpdateUser(
+  id: number,
   username: string,
   email: string,
   password: string
 ) {
-  const res = await fetch(`${BASE_URL}/users/{id}`, {
+  const res = await fetch(`${BASE_URL}/users/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     cache: "no-store",

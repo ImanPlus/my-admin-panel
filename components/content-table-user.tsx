@@ -22,7 +22,7 @@ import {
 import Link from "next/link";
 import { randomNumber } from "@/helper/method";
 import { promisePipe } from "@/helper/exception-handler";
-import { handleGetAllUser } from "@/helper/api";
+import { handleGetAllUser, handlePutUpdateUser } from "@/helper/api";
 import ContentExportSearchUser from "./content-export-search-user";
 import ContentFilterUser from "./content-filter-user";
 import CustomPagination from "./custom-pagination";
@@ -65,6 +65,7 @@ export default function ContentTableUser() {
     email: "",
     password: "",
   });
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
   // Modal
   const showModal = () => {
@@ -108,12 +109,35 @@ export default function ContentTableUser() {
     ).finally(() => setSending(false));
   };
 
+  const putUser = async () => {
+    if (!selectedUserId) {
+      notification.error({ message: "User ID not defined!" });
+      return;
+    }
+
+    if (sending) return;
+    setSending(true);
+
+    const values = await form.validateFields();
+
+    promisePipe(
+      handlePutUpdateUser(1, values.user, values.email, values.password)
+        .then(() => {
+          notification.success({ message: "User updated successfully." });
+          handleCancel();
+          getUsers();
+        })
+        .catch((error: Error) => {
+          notification.error({ message: error.message });
+        })
+        .finally(() => setSending(false))
+    );
+  };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getUsers();
   }, []);
-
-  console.log("kit to beyt", copyData);
 
   // Select Row
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -266,7 +290,8 @@ export default function ContentTableUser() {
                   onClick: () => {
                     showModal();
                     const data = dataUser.find((e) => e.id === record.id);
-                    console.log("data", data);
+                    setSelectedUserId(record.id);
+
                     setCopyData({
                       username: data?.name.firstname ?? "",
                       email: data?.email ?? "",
@@ -372,7 +397,7 @@ export default function ContentTableUser() {
           <p className="text-grayscale-400 text-center">
             Updating user details will receive a privacy audit.
           </p>
-          <Form form={form}>
+          <Form form={form} onFinish={putUser}>
             <div className="grid grid-cols-2 gap-4 py-3">
               <FormItemInput
                 name="user"
