@@ -63,6 +63,7 @@ export default function ContentTableUser() {
   });
   const [searchValue, setSearchValue] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [form] = Form.useForm();
   // const [copyData, setCopyData] = useState({
   //   username: "",
@@ -479,6 +480,14 @@ export default function ContentTableUser() {
             </div>
           </Form>
         </div>
+      </Modal>
+      <Modal
+        open={deleteModal}
+        closeIcon={false}
+        closable={false}
+        classNames={{ footer: "hidden!", body: "h-fit!" }}
+      >
+        مههتسیمهلسیملتسخملتسثیختل
       </Modal>
     </div>
   );
