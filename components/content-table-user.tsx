@@ -22,7 +22,11 @@ import {
 import Link from "next/link";
 import { randomNumber } from "@/helper/method";
 import { promisePipe } from "@/helper/exception-handler";
-import { handleGetAllUser, handlePutUpdateUser } from "@/helper/api";
+import {
+  handleDeleteUser,
+  handleGetAllUser,
+  handlePutUpdateUser,
+} from "@/helper/api";
 import ContentExportSearchUser from "./content-export-search-user";
 import ContentFilterUser from "./content-filter-user";
 import CustomPagination from "./custom-pagination";
@@ -126,6 +130,28 @@ export default function ContentTableUser() {
           notification.success({ message: "User updated successfully." });
           handleCancel();
           getUsers();
+        })
+        .catch((error: Error) => {
+          notification.error({ message: error.message });
+        })
+        .finally(() => setSending(false))
+    );
+  };
+
+  const deleteUser = async (value: number) => {
+    if (!value) {
+      notification.error({ message: "User ID not defined!" });
+      return;
+    }
+
+    if (sending) return;
+    setSending(true);
+
+    promisePipe(
+      handleDeleteUser(value)
+        .then((res) => {
+          console.log("res", res);
+          notification.success({ message: "User deleted successfully!" });
         })
         .catch((error: Error) => {
           notification.error({ message: error.message });
@@ -269,7 +295,12 @@ export default function ContentTableUser() {
       dataIndex: "actions",
       render: (_, record) => (
         <div className="flex items-center gap-2">
-          <Button type="text">
+          <Button
+            type="text"
+            onClick={() => {
+              deleteUser(record.id);
+            }}
+          >
             <DeleteOutlined className="text-20-regular text-grayscale-400!" />
           </Button>
 

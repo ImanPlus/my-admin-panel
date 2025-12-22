@@ -75,6 +75,20 @@ export async function handlePutUpdateUser(
   return res.json();
 }
 
+export async function handleDeleteUser(id: number) {
+  const res = await fetch(`${BASE_URL}/users/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
+}
+
 // ---------------------- Product
 export async function handleGetAllProduct() {
   const res = await fetch(`${BASE_URL}/products`, {
