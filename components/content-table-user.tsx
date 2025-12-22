@@ -60,11 +60,11 @@ export default function ContentTableUser() {
   const [searchValue, setSearchValue] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const [copyData, setCopyData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  // const [copyData, setCopyData] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  // });
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
   // Modal
@@ -289,14 +289,14 @@ export default function ContentTableUser() {
                   ),
                   onClick: () => {
                     showModal();
-                    const data = dataUser.find((e) => e.id === record.id);
+                    // const data = dataUser.find((e) => e.id === record.id);
                     setSelectedUserId(record.id);
 
-                    setCopyData({
-                      username: data?.name.firstname ?? "",
-                      email: data?.email ?? "",
-                      password: data?.password ?? "",
-                    });
+                    // setCopyData({
+                    //   username: data?.name.firstname ?? "",
+                    //   email: data?.email ?? "",
+                    //   password: data?.password ?? "",
+                    // });
 
                     form.setFieldsValue({
                       user: record.name.firstname + " " + record.name.lastname,
